@@ -1,35 +1,45 @@
 @use "../base/variables" as v;
+@use "../base/mixin" as *;
 
-// ---- Hero ------------------------------------------------------------
 .about-hero {
   background: v.$color-teal-dark;
   color: v.$color-white;
   padding-bottom: 27px;
 
-  @media (min-width: 769px) {
+  @include pad {
+    padding-bottom: 142px;
+  }
+
+  @include desktop {
     padding-bottom: 142px;
   }
 }
 
-.about-hero__inner {
+.about-hero-inner {
   padding-top: 34px;
 }
 
-.about-hero__grid {
+.about-hero-grid {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
   gap: 32px;
   margin-top: 63px;
 
-  @media (min-width: 769px) {
+  @include pad {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 137px;
+  }
+
+  @include desktop {
     grid-template-columns: 1fr 1fr;
     gap: 48px;
     margin-top: 137px;
   }
 }
 
-.about-hero__title {
+.about-hero-title {
   position: relative;
   font-size: 32px;
   font-weight: 700;
@@ -46,12 +56,12 @@
     background: v.$color-accent-gold;
   }
 
-  @media (max-width: v.$breakpoint-tablet) {
+  @include mobile {
     font-size: 26px;
   }
 }
 
-.about-hero__text p {
+.about-hero-text p {
   font-size: 14px;
   line-height: 1.45;
   color: rgba(255, 255, 255, 0.92);
@@ -62,30 +72,38 @@
   }
 }
 
-.about-hero__media img {
+.about-hero-media img {
   width: 100%;
   height: auto;
   border-radius: 12px;
   object-fit: cover;
 }
 
-// ---- Core values -------------------------------------------------------
 .core-values {
   background: v.$color-gray-bg;
   padding-top: 31px;
   padding-bottom: 29px;
 
-  @media (min-width: 769px) {
+  @include pad {
+    padding-top: 122px;
+    padding-bottom: 120px;
+  }
+
+  @include desktop {
     padding-top: 122px;
     padding-bottom: 120px;
   }
 }
 
-.core-values__heading {
+.core-values-heading {
   text-align: center;
   margin-bottom: 27px;
 
-  @media (min-width: 769px) {
+  @include pad {
+    margin-bottom: 50px;
+  }
+
+  @include desktop {
     margin-bottom: 50px;
   }
 
@@ -103,12 +121,12 @@
   }
 }
 
-.core-values__list {
+.core-values-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 
-  @media (max-width: v.$breakpoint-tablet) {
+  @include mobile {
     grid-template-columns: 1fr;
   }
 }
@@ -118,7 +136,7 @@
   border-radius: 12px;
   padding: 32px 28px;
 
-  &__icon {
+  .core-value-card-icon {
     display: block;
     width: 48px;
     height: 48px;
@@ -140,38 +158,41 @@
   }
 }
 
-// Location uses shared .section-title with About-only size/alignment variant
-.section-title--sm {
+.section-title-sm {
   font-size: 24px;
   text-align: left;
   margin-bottom: 16px;
 }
 
-// ---- Location ------------------------------------------------------------
 .location {
   background: v.$color-white;
   padding-top: 51px;
   padding-bottom: 114px;
 
-  @media (min-width: 769px) {
+  @include pad {
+    padding-top: 97px;
+    padding-bottom: 150px;
+  }
+
+  @include desktop {
     padding-top: 97px;
     padding-bottom: 150px;
   }
 }
 
-.location__card {
+.location-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border: 1.5px solid v.$color-teal;
   border-radius: 12px;
   overflow: hidden;
 
-  @media (max-width: v.$breakpoint-tablet) {
+  @include mobile {
     grid-template-columns: 1fr;
   }
 }
 
-.location__info {
+.location-info {
   padding: 32px;
 
   p {
@@ -186,7 +207,7 @@
   }
 }
 
-.location__map {
+.location-map {
   position: relative;
   min-height: 240px;
   height: 100%;

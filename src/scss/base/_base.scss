@@ -1,28 +1,15 @@
 @use "variables" as v;
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
     font-family: v.$font-family-base;
     color: v.$color-heading-text;
     -webkit-font-smoothing: antialiased;
 }
 
-img {
-    max-width: 100%;
-    display: block;
-}
-
-a,
 a:link,
 a:visited,
 a:hover,
@@ -32,7 +19,6 @@ a:active {
 }
 
 button {
-    font-family: inherit;
     cursor: pointer;
 }
 
@@ -43,9 +29,6 @@ ol {
     list-style: none;
 }
 
-// Fluid outer shell: full-width backgrounds are free to extend to the
-// viewport edge; this container only constrains the inner content column.
-// Do NOT wrap the page shell itself in a max-width.
 .container {
     max-width: v.$container-max-width;
     margin-inline: auto;

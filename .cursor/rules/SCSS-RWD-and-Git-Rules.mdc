@@ -1,0 +1,323 @@
+---
+alwaysApply: true
+---
+
+# SCSS 與 RWD 開發規範
+
+## 核心原則
+
+SCSS 與 RWD 開發優先順序：
+
+1. 設計稿還原
+2. 現有專案一致性
+3. RWD 穩定性
+4. Template 與 SCSS 易於對照
+5. 可讀性與可維護性
+6. 共用與抽象
+
+開發前先檢查專案既有 SCSS、Variables、Mixins、Breakpoint 與 RWD 寫法，能沿用就沿用，不建立功能重複的樣式系統。
+
+## SCSS
+
+- 使用 SCSS
+- Vue Component 優先使用 `<style scoped lang="scss">`
+- SCSS 維持巢狀結構，盡量對應 Template DOM 層級
+- 不使用 BEM 作為預設命名方式
+- Class 名稱保持簡潔、有語意、容易從 Template 對應到 Style
+- 允許使用 `&` 處理 hover、active、focus、state
+- 避免沒有必要的過深 Selector
+- 避免不必要的 inline style
+- 不自行導入 TailwindCSS
+- 修改既有 Style 優先採用最小必要修改
+
+## 共用 SCSS
+
+如果專案已存在以下檔案，優先沿用：
+
+- `_variables.scss`
+- `_mixin.scss`
+- `_reset.scss`
+- `main.scss`
+
+不要自行建立另一套 Variables、Mixins、Utility、Design Token、Layout 或 Breakpoint 系統。
+
+### Variables
+
+`_variables.scss` 只放真正具有全站共用價值的設定，例如：
+
+- 品牌色
+- 共用文字色
+- 共用背景色
+- 共用 Breakpoint
+- 多處重複使用且具有明確語意的設定
+
+單一 Page / Component 使用的數值直接留在原處，不要為了消除 Magic Number 過度建立 Variable。
+
+### Mixins
+
+開發 Style 前先檢查 `_mixin.scss`。
+
+如果已有適合的 Mixin，優先使用，不重複撰寫相同功能。
+
+目前專案常用 Mixin 包含：
+
+- `@include box(...)`
+- `@include flex(...)`
+- `@include center`
+- `@include mobile`
+- `@include pad`
+- `@include desktop`
+
+既有 Mixin 無法合理完成需求時，可以直接寫 SCSS。
+
+只有真正具有多處共用價值時，才新增新的 Mixin。
+
+### Reset / Main
+
+`_reset.scss` 只處理全站基礎 Reset，不放 Page 或 Component Style。
+
+`main.scss` 作為全域 SCSS 入口，只放全站共用與基礎樣式。
+
+Page / Component Style 原則上留在各自 `.vue` 內。
+
+## RWD
+
+所有正式頁面都必須考慮：
+
+- Desktop
+- Tablet
+- Mobile
+
+Layout 優先使用：
+
+- Flex
+- Grid
+- Percentage
+- max-width
+- Normal Document Flow
+- 既有 SCSS Responsive Mixins
+
+避免：
+
+- 不必要的固定寬度
+- Desktop-only Layout
+- 特定手機型號 Hack
+- 大量 Magic Number 強行對位
+- 大量 Absolute 取代正常 Layout
+- 同一專案存在多套 Breakpoint
+
+## Breakpoint
+
+目前標準：
+
+- Mobile：`< 768px`
+- Tablet：`768px ~ 1023px`
+- Desktop：`>= 1024px`
+
+RWD 優先使用：
+
+- `@include mobile`
+- `@include pad`
+- `@include desktop`
+
+如果既有專案使用其他 Breakpoint，優先遵循既有專案。
+
+不要自行修改既有 Breakpoint。
+
+只有以下情況才額外使用 `@media`：
+
+- 現有 Mixins 無法完整還原設計稿
+- 特定尺寸發生跑版
+- 某個尺寸需要特殊修復
+
+不要透過大量額外 `@media` 建立第二套 RWD 系統。
+
+## Desktop / Mobile DOM
+
+預設優先：
+
+**單一 DOM + CSS RWD**
+
+如果只是排列方向、欄數、尺寸、間距等差異，優先透過 Flex、Grid、Responsive Mixins 處理。
+
+如果為了共用 DOM 必須大量使用：
+
+- `order`
+- `display: none`
+- `nth-child`
+- Transform
+- Absolute
+- 特殊 Selector
+- Device-specific CSS
+
+則重新評估是否應拆成不同 DOM。
+
+Desktop / Mobile 結構、內容順序、操作方式或主要視覺差異很大時，可以使用不同 DOM。
+
+不要為了方便切版就建立兩套重複 DOM，也不要為了堅持單一 DOM 寫出難以維護的 CSS。
+
+無法判斷時，先提出方案讓開發者確認。
+
+## Absolute Positioning
+
+允許使用 `position: absolute`。
+
+適合：
+
+- 裝飾素材
+- Banner 疊圖
+- Icon / Badge
+- 動畫物件
+- 人物與圖片前後層次
+- 設計稿明確需要重疊的視覺元素
+
+主要 Layout 優先使用 Flex、Grid 與正常 Document Flow。
+
+不要為了快速對稿，將主要內容大量使用固定 `top / left / right / bottom` 強行定位。
+
+Absolute 元素必須同時確認 Desktop、Tablet、Mobile。
+
+## Container / max-width
+
+如果專案已有 Container / max-width 規範，優先沿用。
+
+沒有既有規範時，不自行建立固定的全站 Container。
+
+內容寬度依設計稿與實際 Layout 決定，可合理使用：
+
+- `width`
+- `%`
+- `max-width`
+- Flex
+- Grid
+- `@include center`
+
+不同 Section 可以依設計稿使用不同 max-width。
+
+Tablet / Mobile 必須保有合理左右留白。
+
+## CSS 單位
+
+不要強制所有尺寸使用同一種單位。
+
+### px
+
+可以正常使用，尤其：
+
+- Figma 明確尺寸
+- font-size
+- margin / padding / gap
+- icon
+- border
+- 固定素材尺寸
+
+RWD 網站不需要把所有 px 改成 rem。
+
+但主要 Layout 不應只依賴固定 px。
+
+### %
+
+需要跟隨 Parent 寬度或比例時優先使用。
+
+### vw / vh
+
+只在真正需要與 Viewport 尺寸連動時使用，例如全螢幕區塊、Banner 或特殊視覺效果。
+
+不要大量用於一般文字、間距、Button、Card 或主要 Layout。
+
+### rem
+
+允許使用，但不強制。
+
+如果既有專案使用 rem 就沿用；如果依照 Figma px 開發，可以直接使用 px。
+
+不要為了 RWD 或所謂最佳實務強制將 px 轉成 rem。
+
+## Width / Height
+
+固定 Width / Height 可以使用，但應符合設計需求。
+
+Icon、Logo、Badge、裝飾素材等固定視覺元素可以正常使用固定尺寸。
+
+主要 Layout 優先評估 `%`、`max-width`、Flex、Grid 與 RWD Mixins。
+
+具有文字或動態內容的區塊避免不必要固定高度，優先讓內容自然撐高或使用 `min-height`。
+
+## 圖片
+
+圖片的以下設定一律以設計稿為準：
+
+- 尺寸
+- 比例
+- 裁切方式
+- 顯示範圍
+- Desktop / Tablet / Mobile 呈現方式
+
+不要自行預設：
+
+- `object-fit: cover`
+- `object-fit: contain`
+- `aspect-ratio`
+
+不要任意裁切或改變圖片比例。
+
+設計稿需要裁切才使用 `cover`；需要完整顯示才使用 `contain`。
+
+無法從設計稿判斷時，先向開發者確認。
+
+## 不要過度抽象
+
+不要因為看到幾個相同的：
+
+- Color
+- Margin
+- Padding
+- Flex
+- Width
+- CSS 宣告
+
+就自動建立 Variable、Mixin 或 Global Class。
+
+只有真正多處重用，且抽離後能提升可讀性與維護性時才共用。
+
+## 設計稿還原
+
+有 Figma、圖片、Screenshot、Reference HTML 或舊網站時，以目前任務指定的正式設計來源為準。
+
+不要自行：
+
+- 改變間距
+- 改變圖片比例
+- 改變元素排列
+- 增加設計稿沒有的 UI
+- 刪除設計元素
+- 改變主要 RWD 結構
+- 為了程式碼更漂亮而降低設計稿還原度
+
+如果設計稿與既有程式碼衝突，先確認以哪一個為準。
+
+## 完成檢查
+
+完成 Page / Component 後至少確認：
+
+- Desktop / Tablet / Mobile 正常
+- 無非預期 Horizontal Scroll / Overflow
+- 圖片沒有變形或非預期裁切
+- 文字沒有重疊
+- Absolute 元素沒有明顯跑版
+- Tablet / Mobile 左右留白合理
+- 沒有建立不必要 Breakpoint
+- 沒有重複建立既有 Mixin
+- Template 與 SCSS 容易互相對照
+- 沒有不必要的 Desktop / Mobile 雙 DOM
+- 沒有大量 Magic Number 強行對位
+
+## 最終原則
+
+優先：
+
+**設計稿還原 → 現有專案一致性 → RWD 穩定 → 可讀性 → 可維護性 → 抽象與共用**
+
+不要為了理論上的最佳實務破壞現有專案習慣。
+
+遇到無法明確判斷的 RWD、DOM 拆分、圖片裁切或架構問題時，先向開發者說明方案與影響，確認後再實作。

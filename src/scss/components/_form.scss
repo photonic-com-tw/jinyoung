@@ -1,18 +1,27 @@
 @use "../base/variables" as v;
+@use "../base/mixin" as *;
 
 .contact-form {
   background: v.$color-white;
   padding-top: 32px;
   padding-bottom: 64px;
 
-  @media (min-width: 769px) {
+  @include pad {
+    padding-top: 82px;
+  }
+
+  @include desktop {
     padding-top: 82px;
   }
 
   .section-title {
     margin-bottom: 33px;
 
-    @media (min-width: 769px) {
+    @include pad {
+      margin-bottom: 50px;
+    }
+
+    @include desktop {
       margin-bottom: 50px;
     }
   }
@@ -27,19 +36,24 @@
 }
 
 .reply-form {
-  &__row {
+  .reply-form-row {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
     margin-bottom: 24px;
 
-    @media (min-width: 769px) {
+    @include pad {
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 46px;
+    }
+
+    @include desktop {
       grid-template-columns: 1fr 1fr;
       margin-bottom: 46px;
     }
   }
 
-  &__field {
+  .reply-form-field {
     display: flex;
     flex-direction: column;
 
@@ -51,7 +65,7 @@
     }
   }
 
-  &__split {
+  .reply-form-split {
     display: flex;
     gap: 12px;
 
@@ -86,16 +100,20 @@
     resize: vertical;
   }
 
-  &__captcha {
+  .reply-form-captcha {
     border: 1px solid v.$color-teal-dark;
     border-radius: 6px;
   }
 
-  &__submit {
+  .reply-form-submit {
     text-align: center;
     margin-top: 27px;
 
-    @media (min-width: 769px) {
+    @include pad {
+      margin-top: 43px;
+    }
+
+    @include desktop {
       margin-top: 43px;
     }
   }

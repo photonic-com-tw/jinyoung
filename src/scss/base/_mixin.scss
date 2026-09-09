@@ -1,0 +1,35 @@
+@mixin box($width, $height, $position: relative) {
+    width: $width;
+    height: $height;
+    position: $position;
+    box-sizing: border-box;
+}
+
+@mixin flex($align: center, $justify: center) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin center {
+    display: block;
+    margin: 0 auto;
+}
+
+@mixin mobile {
+    @media (max-width: #{768px}) {
+        @content;
+    }
+}
+
+@mixin pad {
+    @media (min-width: 769px) and (max-width: #{1024px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1025px) {
+        @content;
+    }
+}
