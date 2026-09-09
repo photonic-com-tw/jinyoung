@@ -1,0 +1,29 @@
+@use "../base/variables" as v;
+
+.breadcrumb__list {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: v.$color-white;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  li:not(:last-child)::after {
+    content: "/";
+    margin-inline: 10px;
+    color: v.$color-white;
+  }
+
+  li[aria-current="page"] {
+    color: v.$color-accent-gold;
+  }
+
+  a:hover {
+    color: v.$color-white;
+  }
+}

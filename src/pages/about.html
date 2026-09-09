@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>關於我們｜金永國際租賃有限公司</title>
+  </head>
+  <body>
+    {{> header }}
+
+    <main class="about">
+      <section class="about-hero">
+        <div class="container about-hero__inner">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol class="breadcrumb__list">
+              <li><a href="/">首頁</a></li>
+              <li aria-current="page">關於我們</li>
+            </ol>
+          </nav>
+
+          <div class="about-hero__grid">
+            <div class="about-hero__text">
+              <h1 class="about-hero__title">關於金永包車</h1>
+              <p>
+                還在用傳統的方式辛苦的自駕旅遊嗎？<br />
+                自行租車不僅成本高，還要承擔車輛損壞的風險；自駕的駕駛人更是無法好好放鬆，一路上必須緊繃神經面對不熟的路況與車況。
+              </p>
+              <p>
+                現在，您有更聰明、更放鬆的選擇！<br />
+                「金永包車」是全台旅遊愛好者的救星。我們幫您省去所有交通與路況的麻煩事，您只需要帶著放鬆的心情，體驗既經濟實惠、又安全有保障的客製化旅程。
+              </p>
+            </div>
+            <div class="about-hero__media">
+              <img src="../assets/images/about-hero.png" alt="金永包車司機於車旁迎賓" width="600" height="255" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="core-values">
+        <div class="container">
+          <div class="core-values__heading">
+            <h2>核心價值</h2>
+            <p>我們的三大核心堅持</p>
+          </div>
+
+          <ul class="core-values__list">
+            <li class="core-value-card">
+              <img class="core-value-card__icon" src="../assets/images/icon-shield.png" width="48" height="48" alt="" aria-hidden="true" />
+              <h3>良心定價，高品質不加價</h3>
+              <p>我們保證絕不因平價而犧牲品質，更承諾絕不變相加價，讓您花得划算、玩得安心。</p>
+            </li>
+            <li class="core-value-card">
+              <img class="core-value-card__icon" src="../assets/images/icon-star.png" width="48" height="48" alt="" aria-hidden="true" />
+              <h3>全台覆蓋，行程彈性不綁架</h3>
+              <p>提供全台各區與機場接送，行程皆可隨意搭配、隨時調整，讓您享受真正毫無拘束的自由行。</p>
+            </li>
+            <li class="core-value-card">
+              <img class="core-value-card__icon" src="../assets/images/icon-crown.png" width="48" height="48" alt="" aria-hidden="true" />
+              <h3>顧客至上，打造悠閒尊榮感</h3>
+              <p>我們把您當家人，旅遊中絕不催促、不趕時間，讓您用最放鬆、最悠閒的心情享受完美假期。</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {{> reply-form }}
+
+      <section class="location">
+        <div class="container">
+          <div class="location__card">
+            <div class="location__info">
+              <h2 class="section-title section-title--sm">公司據點</h2>
+              <p>地址：桃園市大園區埔心街54號<br />統編：36908040</p>
+              <p>
+                市話專線：886-2-29749738#2<br />
+                行動專線：0915-350-565<br />
+                E-mail：e121051940@yahoo.com.tw<br />
+                E-mail：e0915350565@kimo.com
+              </p>
+            </div>
+            <div class="location__map">
+              <iframe
+                title="公司據點地圖：桃園市大園區埔心街54號"
+                src="https://www.google.com/maps?q=%E6%A1%83%E5%9C%92%E5%B8%82%E5%A4%A7%E5%9C%92%E5%8D%80%E5%9F%94%E5%BF%83%E8%A1%9754%E8%99%9F&hl=zh-TW&z=16&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    {{> footer }}
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

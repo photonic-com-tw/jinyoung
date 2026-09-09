@@ -1,0 +1,34 @@
+@use "../base/variables" as v;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.btn--pill {
+  background: v.$color-mint;
+  color: v.$color-teal-dark;
+  padding: 10px 20px;
+}
+
+.btn__icon {
+  flex-shrink: 0;
+}
+
+.btn--submit {
+  min-width: 112px;
+  justify-content: center;
+  padding: 11px 24px;
+}

@@ -1,0 +1,69 @@
+<section class="contact-form">
+  <div class="container">
+    <h2 class="section-title">回函表</h2>
+
+    <form class="reply-form">
+      <div class="reply-form__row">
+        <div class="reply-form__field">
+          <label for="name"><span class="required">*</span>承租人姓名</label>
+          <input type="text" id="name" name="name" placeholder="請輸入姓名" required />
+        </div>
+        <div class="reply-form__field">
+          <label for="phone"><span class="required">*</span>聯絡電話</label>
+          <input type="tel" id="phone" name="phone" placeholder="請輸入電話" required />
+        </div>
+      </div>
+
+      <div class="reply-form__row">
+        <div class="reply-form__field">
+          <label for="email"><span class="required">*</span>Email</label>
+          <input type="email" id="email" name="email" placeholder="請輸入Email" required />
+        </div>
+        <div class="reply-form__field reply-form__field--split">
+          <label>人數</label>
+          <div class="reply-form__split">
+            <input type="number" min="0" name="adults" placeholder="大人" />
+            <input type="number" min="0" name="children" placeholder="小孩" />
+          </div>
+        </div>
+      </div>
+
+      <div class="reply-form__row">
+        <div class="reply-form__field">
+          <label for="date">承租日期</label>
+          <input type="date" id="date" name="date" placeholder="選擇日期" />
+        </div>
+        <div class="reply-form__field">
+          <label for="time">承租時間</label>
+          <input type="time" id="time" name="time" placeholder="選擇時間" />
+        </div>
+      </div>
+
+      <div class="reply-form__row">
+        <div class="reply-form__field">
+          <label for="itinerary">預計行程</label>
+          <textarea id="itinerary" name="itinerary" rows="6" placeholder="請輸入內容"></textarea>
+        </div>
+        <div class="reply-form__field">
+          <label for="note">備註事項</label>
+          <textarea id="note" name="note" rows="6" placeholder="請輸入內容"></textarea>
+        </div>
+      </div>
+
+      <div class="reply-form__row">
+        <div class="reply-form__field">
+          <label for="captcha"><span class="required">*</span>驗證碼</label>
+          <input type="text" id="captcha" name="captcha" placeholder="請輸入驗證碼" required />
+        </div>
+        <div class="reply-form__field">
+          <label>換一張</label>
+          <img class="reply-form__captcha" src="../assets/images/about-captcha.png" alt="驗證碼圖片" width="587" height="46" />
+        </div>
+      </div>
+
+      <div class="reply-form__submit">
+        <button type="submit" class="btn btn--pill btn--submit">送出訊息</button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+// Color tokens sampled from Figma reference (About page, node 1306-937 / 1379-9442)
+$color-teal-dark: #0b4f4a; // hero / breadcrumb / footer copyright bar background
+$color-teal: #00786f; // section heading accent, footer background, borders
+$color-mint: #96f7e4; // primary CTA button background
+$color-accent-gold: #ffedd4; // breadcrumb current-page + title underline accent
+$color-white: #ffffff;
+$color-gray-bg: #f3f4f6; // core values section background
+$color-gray-text: #9ca3af; // muted subheading text
+$color-body-text: #4b5563; // paragraph / description text
+$color-heading-text: #111111; // black section headings
+
+$font-family-base: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+
+// Desktop reference viewport is 1440; audited primary content width ~1200px.
+$container-max-width: 1200px;
+$container-padding: 20px;
+
+$breakpoint-mobile: 390px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1440px;
