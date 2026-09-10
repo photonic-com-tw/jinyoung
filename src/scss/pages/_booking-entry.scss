@@ -1,0 +1,258 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+$color-heading-teal: #0b8b77;
+$color-card-border: #e5e7eb;
+$color-consult-bg: #f0fdfa;
+
+// Shared Booking Entry (Figma 1362:5936 desktop Recommended Trip variant).
+// Representative content: 苗栗市旅遊 (parent of node 1362:5937 Header).
+// Structure mirrors accepted Booking Entry layout; content-only swap.
+.booking-entry-body {
+    background: v.$color-white;
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        padding-block: 80px;
+    }
+}
+
+.booking-entry-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+
+    @include desktop {
+        grid-template-columns: minmax(0, 1fr) 400px;
+        align-items: start;
+    }
+}
+
+.booking-entry-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include pad {
+        gap: 40px;
+    }
+
+    @include desktop {
+        gap: 40px;
+    }
+}
+
+.booking-entry-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.booking-entry-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: $color-heading-teal;
+    letter-spacing: 1.4px;
+    line-height: 1.2;
+    margin: 0;
+
+    @include pad {
+        font-size: 36px;
+        letter-spacing: 1.8px;
+    }
+
+    @include desktop {
+        font-size: 36px;
+        letter-spacing: 1.8px;
+    }
+}
+
+.booking-entry-subtitle {
+    font-size: 16px;
+    color: $color-muted;
+    letter-spacing: 1px;
+    margin: 0;
+
+    @include pad {
+        font-size: 20px;
+    }
+
+    @include desktop {
+        font-size: 20px;
+    }
+}
+
+.booking-entry-media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 760 / 400;
+    border-radius: 16px;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.booking-entry-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.booking-entry-card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1.2px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-entry-card-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.booking-entry-card-body {
+    font-size: 16px;
+    line-height: 1.5;
+    color: $color-muted;
+    letter-spacing: 0.8px;
+
+    p {
+        margin: 0 0 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    strong {
+        font-weight: 700;
+        color: $color-muted;
+    }
+}
+
+.booking-entry-aside {
+    @include desktop {
+        position: sticky;
+        top: 24px;
+    }
+}
+
+.booking-entry-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.booking-entry-summary-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-entry-amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: v.$color-teal-dark;
+}
+
+.booking-entry-amount-label {
+    font-size: 16px;
+    letter-spacing: 0.8px;
+}
+
+.booking-entry-amount-value {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.booking-entry-checkout {
+    width: 100%;
+    height: 52px;
+    background: v.$color-accent-gold;
+    color: v.$color-teal-dark;
+    border-radius: 8px;
+    justify-content: center;
+}
+
+.booking-entry-consult {
+    background: $color-consult-bg;
+    padding-block: 40px;
+
+    @include pad {
+        padding-block: 64px;
+    }
+
+    @include desktop {
+        padding-block: 64px;
+    }
+}
+
+.booking-entry-consult-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.booking-entry-consult-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: v.$color-teal;
+        letter-spacing: 1.2px;
+        margin: 0;
+
+        @include pad {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+
+        @include desktop {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        color: v.$color-heading-text;
+        letter-spacing: 0.8px;
+        margin: 0;
+    }
+}

@@ -1,0 +1,284 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+$color-card-border: #e5e7eb;
+$color-available-bg: #fff7ed;
+
+// Booking / 我要預約 (Figma 1354:6096 desktop, 1380:12154 mobile).
+// Trip dropdown open state: Figma 1365:13964 (desktop only; reused responsively on mobile).
+.booking-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 240px;
+    background: v.$color-teal-dark;
+}
+
+.booking-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.booking-hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: v.$color-white;
+    letter-spacing: 1.8px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-body {
+    background: v.$color-white;
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        padding-block: 80px;
+    }
+}
+
+.booking-body-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include pad {
+        gap: 80px;
+    }
+
+    @include desktop {
+        gap: 80px;
+    }
+}
+
+.booking-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+
+    @include pad {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    @include desktop {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+    }
+}
+
+.booking-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.booking-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-subtitle {
+    font-size: 14px;
+    color: $color-muted;
+    letter-spacing: 0.7px;
+    margin: 0;
+
+    @include pad {
+        max-width: 392px;
+    }
+
+    @include desktop {
+        max-width: 392px;
+    }
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 14px;
+    color: $color-muted;
+    letter-spacing: 0.7px;
+    white-space: nowrap;
+}
+
+.btn-back img {
+    display: block;
+}
+
+// Trip selector: single card whose panel reveals the Recommended Trip tree.
+.trip-select {
+    width: 100%;
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.trip-select-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.trip-select-caret {
+    display: inline-block;
+    transition: transform 0.15s ease;
+}
+
+.trip-select.is-open .trip-select-caret {
+    transform: rotate(90deg);
+}
+
+.trip-select-panel {
+    height: 0;
+    overflow: hidden;
+    padding-inline: 20px;
+}
+
+.trip-select.is-open .trip-select-panel {
+    height: auto;
+    border-top: 1px solid $color-card-border;
+}
+
+.trip-tree,
+.trip-tree-children {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.trip-tree {
+    padding-block: 16px 20px;
+}
+
+.trip-tree-children {
+    margin-top: 16px;
+}
+
+.trip-tree-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 640px;
+    padding-block: 8px;
+    padding-inline: 40px 40px;
+    border-radius: 8px;
+}
+
+.trip-tree-node--0 > .trip-tree-row {
+    padding-inline: 0 40px;
+}
+
+.trip-tree-node--2 > .trip-tree-row {
+    padding-inline: 64px 40px;
+}
+
+.trip-tree-node--3 > .trip-tree-row {
+    padding-inline: 80px 40px;
+}
+
+.trip-tree-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.trip-tree-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.trip-tree-chevron {
+    display: block;
+    flex-shrink: 0;
+    transition: transform 0.15s ease;
+}
+
+.trip-tree-leaf {
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.trip-tree-leaf:hover {
+    background: $color-available-bg;
+}
+
+// A region/county row only renders as an accordion trigger when it has at
+// least one real child (empty-data rule) — every rendered trigger below has
+// working content, never a decorative dead end.
+.trip-tree-trigger {
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.trip-tree-node--accordion:not(.is-expanded)
+    > .trip-tree-row
+    .trip-tree-chevron {
+    transform: rotate(180deg);
+}
+
+// Panels default to collapsed via class state (no JS needed for first
+// paint); JS only drives the animated height transition in between. The
+// stable "auto" end-state lets a nested county panel grow/shrink its parent
+// region panel naturally, with no stale fixed-height clipping.
+.trip-tree-node--accordion > .trip-tree-children {
+    height: 0;
+    overflow: hidden;
+}
+
+.trip-tree-node--accordion.is-expanded > .trip-tree-children {
+    height: auto;
+}

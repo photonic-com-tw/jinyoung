@@ -1,0 +1,435 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+$color-card-border: #e5e7eb;
+$color-teal-50: #f0fdfa;
+$color-danger: #d92d20;
+
+// Booking Details / 預約資料填寫.
+// Phase 1: render the complete field union for all five booking sources.
+// data-booking-source metadata is retained for later backend visibility control,
+// but must NOT hide any group in the current verification state.
+.booking-details-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 240px;
+    background: v.$color-teal-dark;
+}
+
+.booking-details-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.booking-details-hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: v.$color-white;
+    letter-spacing: 1.8px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-details-hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-details-body {
+    background: v.$color-white;
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        padding-block: 80px;
+    }
+}
+
+.booking-details-body-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include pad {
+        gap: 80px;
+    }
+
+    @include desktop {
+        gap: 80px;
+    }
+}
+
+.booking-details-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+
+    @include pad {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    @include desktop {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+    }
+}
+
+.booking-details-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.booking-details-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-details-subtitle {
+    font-size: 14px;
+    color: $color-muted;
+    letter-spacing: 0.7px;
+    margin: 0;
+
+    @include pad {
+        max-width: 392px;
+    }
+
+    @include desktop {
+        max-width: 392px;
+    }
+}
+
+.booking-details-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+
+    @include desktop {
+        grid-template-columns: minmax(0, 1fr) 400px;
+        align-items: start;
+    }
+}
+
+.booking-details-main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+// Selected product/service summary chip, shared shell across all sources.
+.booking-details-cart-list {
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
+}
+
+.booking-details-cart-item {
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.booking-details-cart-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+
+    @include pad {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    @include desktop {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.booking-details-service-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: $color-teal-50;
+    border: 1px solid v.$color-teal;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+}
+
+.booking-details-cart-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1px;
+
+    @include pad {
+        margin-inline: auto;
+    }
+
+    @include desktop {
+        margin-inline: auto;
+    }
+}
+
+.booking-details-cart-remove {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: $color-danger;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    @include pad {
+        position: static;
+    }
+
+    @include desktop {
+        position: static;
+    }
+}
+
+// Form: shared shell + fields, source-specific groups toggled by data attribute.
+.booking-details-form {
+    background: v.$color-white;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @include desktop {
+        max-width: 760px;
+    }
+}
+
+.booking-details-form-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+
+    @include pad {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include desktop {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.booking-details-form-grid--notes {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.booking-details-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+        font-size: 16px;
+        color: v.$color-teal-dark;
+        letter-spacing: 0.8px;
+        line-height: 1.2;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        height: 46px;
+        border: 1px solid v.$color-teal-dark;
+        border-radius: 4px;
+        padding: 8px 16px;
+        font-size: 16px;
+        font-family: inherit;
+        color: v.$color-teal-dark;
+        background: v.$color-white;
+
+        &::placeholder {
+            color: $color-muted;
+        }
+
+        &:focus {
+            outline: 2px solid v.$color-teal;
+            outline-offset: 1px;
+        }
+    }
+
+    textarea {
+        height: 240px;
+        padding-top: 8px;
+        resize: vertical;
+
+        @include mobile {
+            height: 160px;
+        }
+    }
+}
+
+.booking-details-field--wide {
+    @include pad {
+        grid-column: 1 / -1;
+    }
+
+    @include desktop {
+        grid-column: 1 / -1;
+    }
+}
+
+.booking-details-field-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 24px;
+
+    .booking-details-field {
+        flex: 1 0 0;
+        min-width: 0;
+    }
+
+    // Source-specific pairs (date/time, rental range, address) span the full
+    // 2-col grid. Shared 人數 group stays half-width beside Email.
+    &[data-booking-source] {
+        @include pad {
+            grid-column: 1 / -1;
+        }
+
+        @include desktop {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @include mobile {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.booking-details-field-group--address {
+    align-items: flex-end;
+
+    @include mobile {
+        align-items: stretch;
+    }
+}
+
+// Order summary card, structure shared across all source variants.
+.booking-details-aside {
+    @include desktop {
+        position: sticky;
+        top: 24px;
+    }
+}
+
+.booking-details-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.booking-details-summary-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.booking-details-summary-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid $color-card-border;
+}
+
+.booking-details-summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+
+    span:first-child {
+        color: $color-muted;
+    }
+
+    span:last-child {
+        font-weight: 700;
+        color: v.$color-teal-dark;
+    }
+}
+
+.booking-details-summary-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+
+    span:first-child {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+    }
+
+    span:last-child {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+}
+
+.booking-details-checkout {
+    width: 100%;
+    height: 52px;
+    background: v.$color-accent-gold;
+    color: v.$color-teal-dark;
+    border-radius: 8px;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.booking-details-summary-note {
+    font-size: 14px;
+    color: $color-muted;
+    letter-spacing: 0.7px;
+    margin: 0;
+}
