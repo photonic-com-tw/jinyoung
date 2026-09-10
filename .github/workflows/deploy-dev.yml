@@ -1,0 +1,28 @@
+name: Deploy dev to AA Panel
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: false
+
+jobs:
+  trigger-aapanel:
+    runs-on: self-hosted
+
+    steps:
+      - name: Trigger AA Panel deployment
+        env:
+          WEBHOOK_URL: ${{ secrets.AAPANEL_WEBHOOK_URL }}
+        run: |
+          if [ -z "$WEBHOOK_URL" ]; then
+            echo "AAPANEL_WEBHOOK_URL secret is not set"
+            exit 1
+          fi
+          curl --fail --show-error --silent --insecure \
+            --request POST \
+            "$WEBHOOK_URL"
