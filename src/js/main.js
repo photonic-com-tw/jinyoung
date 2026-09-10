@@ -11,3 +11,14 @@ if (navToggle && siteNav) {
     navToggle.setAttribute('aria-expanded', String(isOpen));
   });
 }
+
+document.querySelectorAll('.has-dropdown > .site-nav-dropdown-trigger').forEach((trigger) => {
+  trigger.addEventListener('click', (event) => {
+    if (trigger.getAttribute('href') === '#') {
+      event.preventDefault();
+    }
+    const item = trigger.closest('.has-dropdown');
+    const isOpen = item.classList.toggle('is-open');
+    trigger.setAttribute('aria-expanded', String(isOpen));
+  });
+});

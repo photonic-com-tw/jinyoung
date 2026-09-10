@@ -1,0 +1,30 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+
+// 商務包車-only: 包車服務 policy text blocks (Figma 1356:7508 desktop / 1379:13429 mobile)
+// Page-local — not part of the reusable rental-service family pattern.
+.charter-info-block {
+    font-size: 16px;
+    line-height: 1.2;
+    color: $color-muted;
+    letter-spacing: 0.8px;
+    margin-bottom: 24px;
+
+    @include pad {
+        margin-bottom: 40px;
+    }
+
+    @include desktop {
+        margin-bottom: 40px;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    p {
+        margin: 0;
+    }
+}

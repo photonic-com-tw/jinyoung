@@ -23,6 +23,12 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, 'src/pages/index.html'),
         about: resolve(__dirname, 'src/pages/about.html'),
+        services: resolve(__dirname, 'src/pages/services.html'),
+        rentalAirport: resolve(__dirname, 'src/pages/rental-airport.html'),
+        rentalCharter: resolve(__dirname, 'src/pages/rental-charter.html'),
+        rentalSelfDrive: resolve(__dirname, 'src/pages/rental-self-drive.html'),
+        rentalLongcare: resolve(__dirname, 'src/pages/rental-longcare.html'),
+        rentalDetail: resolve(__dirname, 'src/pages/rental-detail.html'),
       },
     },
   },

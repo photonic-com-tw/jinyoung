@@ -1,0 +1,223 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+$color-card-shadow: rgba(44, 57, 71, 0.2);
+
+// Rental-service family pattern (Figma 1327:4098 desktop / 1379:13189 mobile)
+// Reused by all four 租車服務 pages: 機場接送, 商務包車, 自駕租車, 長照服務.
+.rental-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 480px;
+    overflow: hidden;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+}
+
+.rental-hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.rental-hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.rental-hero-title {
+    font-family: "Noto Sans TC", v.$font-family-base;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1.8px;
+    color: v.$color-white;
+    margin: 0;
+}
+
+.rental-hero-subtitle {
+    font-family: "Noto Sans TC", v.$font-family-base;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.rental-breadcrumb {
+    background: v.$color-white;
+    padding-block: 32px;
+
+    .breadcrumb-list {
+        color: v.$color-heading-text;
+
+        li:not(:last-child)::after {
+            color: v.$color-heading-text;
+        }
+
+        li[aria-current="page"] {
+            color: v.$color-teal-dark;
+        }
+
+        a:hover {
+            color: v.$color-teal;
+        }
+    }
+}
+
+.rental-cards-section {
+    background: v.$color-white;
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        padding-block: 80px;
+    }
+}
+
+.rental-section-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: v.$color-teal;
+    letter-spacing: 1.5px;
+    text-align: center;
+    margin: 0 0 24px;
+
+    @include pad {
+        margin-bottom: 40px;
+    }
+
+    @include desktop {
+        margin-bottom: 40px;
+    }
+}
+
+// Title + subtitle variant (Figma 1327:3995 / 1356:7509 — 商務包車's "車種介紹" / "包車服務")
+// Additive only: .rental-section-title keeps its own margin when used alone (e.g. 機場接送).
+.rental-section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    @include pad {
+        margin-bottom: 40px;
+    }
+
+    @include desktop {
+        margin-bottom: 40px;
+    }
+
+    .rental-section-title {
+        margin: 0;
+    }
+}
+
+.rental-section-subtitle {
+    font-size: 16px;
+    color: $color-muted;
+    letter-spacing: 0.8px;
+    text-align: center;
+    margin: 0;
+}
+
+.rental-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+
+    @include pad {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    @include desktop {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+}
+
+// Tighter grid gap variant (Figma 1356:7390 — 商務包車 card-bar uses 16px, not the 24px default)
+.rental-cards--tight {
+    @include pad {
+        gap: 16px;
+    }
+
+    @include desktop {
+        gap: 16px;
+    }
+}
+
+.rental-card {
+    background: v.$color-white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 10px $color-card-shadow;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+}
+
+.rental-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+}
+
+.rental-card-body h3 {
+    font-size: 20px;
+    font-weight: 400;
+    color: v.$color-heading-text;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.rental-card-desc {
+    font-size: 16px;
+    color: $color-muted;
+    letter-spacing: 0.8px;
+    margin: 0;
+}
+
+.rental-card-suit {
+    font-size: 16px;
+    color: v.$color-teal;
+    letter-spacing: 0.8px;
+    margin: 0;
+}
+
+.rental-card-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 0.8px;
+    margin: 0;
+}

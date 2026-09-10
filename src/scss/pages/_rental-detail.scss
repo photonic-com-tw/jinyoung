@@ -1,0 +1,318 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+$color-heading-teal: #0b8b77;
+$color-card-border: #e5e7eb;
+$color-cta-bg: #f0fdfa;
+
+// Rental Detail UI pattern (Figma 1323:1555 desktop / 1380:10359 mobile)
+// One shared second-level template for all 租車服務 detail items:
+// 機場接送, 商務包車, 自駕租車, 長照服務. Content-only differences are
+// handled inside .rental-detail-card (optional media child, table markup,
+// or an empty "無" body) rather than page-specific variants.
+.rental-detail-body {
+    background: v.$color-white;
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        padding-block: 80px;
+    }
+}
+
+.rental-detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+
+    @include desktop {
+        grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+        gap: 40px;
+        align-items: start;
+    }
+}
+
+.rental-detail-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include pad {
+        gap: 40px;
+    }
+
+    @include desktop {
+        gap: 40px;
+    }
+}
+
+.rental-detail-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+}
+
+.rental-detail-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: $color-heading-teal;
+    letter-spacing: 1.4px;
+    line-height: 1.2;
+    margin: 0;
+
+    @include pad {
+        font-size: 36px;
+        letter-spacing: 1.8px;
+    }
+
+    @include desktop {
+        font-size: 36px;
+        letter-spacing: 1.8px;
+    }
+}
+
+.rental-detail-subtitle {
+    font-size: 16px;
+    color: $color-muted;
+    letter-spacing: 1px;
+    margin: 0;
+
+    @include pad {
+        font-size: 20px;
+    }
+
+    @include desktop {
+        font-size: 20px;
+    }
+}
+
+.rental-detail-media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 760 / 400;
+    border-radius: 16px;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.rental-detail-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.rental-detail-card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1.2px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+// Optional media slot shared by the info card: a diagram/pricing image
+// (機場接送) or a data table (長照服務). Plain text-only cards
+// (商務包車, 自駕租車) simply omit it.
+.rental-detail-card-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.rental-detail-card-body {
+    font-size: 16px;
+    line-height: 1.5;
+    color: $color-muted;
+    letter-spacing: 0.8px;
+
+    p {
+        margin: 0 0 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    ul,
+    ol {
+        margin: 8px 0;
+        padding-left: 20px;
+        list-style: revert;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+
+        th,
+        td {
+            padding: 8px 12px;
+            border: 1px solid $color-card-border;
+            text-align: left;
+        }
+
+        th {
+            color: v.$color-teal-dark;
+            font-weight: 700;
+        }
+    }
+}
+
+.rental-detail-aside {
+    @include desktop {
+        position: sticky;
+        top: 24px;
+    }
+}
+
+.rental-detail-form-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.rental-detail-form-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.rental-detail-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.rental-detail-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    label {
+        font-size: 16px;
+        color: v.$color-teal-dark;
+        letter-spacing: 0.8px;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        border: 1px solid v.$color-teal-dark;
+        border-radius: 4px;
+        padding: 8px 16px;
+        font-family: inherit;
+        font-size: 16px;
+        color: v.$color-heading-text;
+        letter-spacing: 0.8px;
+        background: v.$color-white;
+
+        &::placeholder {
+            color: $color-muted;
+        }
+
+        &:focus {
+            outline: 2px solid v.$color-teal;
+            outline-offset: 1px;
+        }
+    }
+
+    input {
+        height: 46px;
+    }
+
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+}
+
+.rental-detail-form-note {
+    font-size: 14px;
+    color: $color-muted;
+    letter-spacing: 0.7px;
+    margin: 0;
+}
+
+.rental-detail-form-submit {
+    width: 100%;
+    height: 52px;
+}
+
+.rental-detail-cta {
+    background: $color-cta-bg;
+    padding-block: 40px;
+
+    @include pad {
+        padding-block: 64px;
+    }
+
+    @include desktop {
+        padding-block: 64px;
+    }
+}
+
+.rental-detail-cta-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.rental-detail-cta-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: v.$color-teal;
+        letter-spacing: 1.2px;
+        margin: 0;
+
+        @include pad {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+
+        @include desktop {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        color: v.$color-heading-text;
+        letter-spacing: 0.8px;
+        margin: 0;
+    }
+}

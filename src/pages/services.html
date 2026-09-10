@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>專屬服務｜金永國際租賃有限公司</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        {{> header }}
+
+        <main class="services">
+            <section class="services-hero">
+                <img
+                    class="services-hero-media"
+                    src="../assets/images/services-hero.jpg"
+                    alt=""
+                    width="1920"
+                    height="475"
+                />
+                <div class="container services-hero-inner">
+                    <h1 class="services-hero-title">專屬服務</h1>
+                    <p class="services-hero-subtitle">
+                        為您量身打造的頂級出行體驗
+                    </p>
+                </div>
+            </section>
+
+            <section class="services-intro">
+                <div class="container">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <ol class="breadcrumb-list">
+                            <li><a href="/pages/index.html">首頁</a></li>
+                            <li aria-current="page">專屬服務</li>
+                        </ol>
+                    </nav>
+
+                    <div class="services-intro-heading">
+                        <h2>行程隨心，安心隨行</h2>
+                        <p>
+                            免去自駕的疲憊與排行程的燒腦，我們以您的立場規劃最舒服的節奏。收費透明、服務貼心，讓您的每一趟出遊，都像自己開車一樣悠閒自在。
+                        </p>
+                    </div>
+
+                    <ul class="services-card-list">
+                        <li class="services-card">
+                            <a href="/pages/rental-airport.html">
+                                <img
+                                    src="../assets/images/service-airport.jpg"
+                                    alt="機場接送"
+                                    width="266"
+                                    height="204"
+                                />
+                                <div class="services-card-body">
+                                    <h3>機場接送</h3>
+                                    <p class="services-card-desc">
+                                        即時掌握航班動態並準時接送，讓您的機場往返旅程更安心流暢。
+                                    </p>
+                                    <p class="services-card-suit">
+                                        ・適合：商務旅客、家庭出遊、長輩出行
+                                    </p>
+                                    <p class="services-card-price">$4,700起</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="services-card">
+                            <a href="/pages/rental-charter.html">
+                                <img
+                                    src="../assets/images/service-charter.jpg"
+                                    alt="商務包車"
+                                    width="266"
+                                    height="204"
+                                />
+                                <div class="services-card-body">
+                                    <h3>商務包車</h3>
+                                    <p class="services-card-desc">
+                                        滿足您各種重要的商務行程，提供最高規格接送，展現專業體面。
+                                    </p>
+                                    <p class="services-card-suit">
+                                        ・適合：企業主管、商務會議、客戶接待
+                                    </p>
+                                    <p class="services-card-price">$4,700起</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="services-card">
+                            <a href="/pages/rental-self-drive.html">
+                                <img
+                                    src="../assets/images/service-fleet.jpg"
+                                    alt="車種介紹"
+                                    width="266"
+                                    height="204"
+                                />
+                                <div class="services-card-body">
+                                    <h3>車種介紹</h3>
+                                    <p class="services-card-desc">
+                                        備有轎車、商務車與多元廂型車，能依您的人數與需求靈活選配。
+                                    </p>
+                                    <p class="services-card-suit">
+                                        ・適合：個人、小團體、大型家庭旅遊
+                                    </p>
+                                    <p class="services-card-price">$4,700起</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="services-card">
+                            <img
+                                src="../assets/images/service-accessible.jpg"
+                                alt="長照服務"
+                                width="266"
+                                height="204"
+                            />
+                            <div class="services-card-body">
+                                <h3>長照服務</h3>
+                                <p class="services-card-desc">
+                                    專為長輩與行動不便者的設計，配備無障礙設施，打造溫馨乘車。
+                                </p>
+                                <p class="services-card-suit">
+                                    ・適合：長輩就醫、復健接送、輪椅使用者
+                                </p>
+                                <p class="services-card-price">$4,700起</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            {{> reply-form }}
+        </main>
+
+        {{> footer }}
+
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>
