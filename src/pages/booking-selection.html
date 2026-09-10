@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>我要預約｜金永國際租賃有限公司</title>
+        {{> head-fonts }}
+    </head>
+    <body>
+        {{> header }}
+
+        <main class="booking">
+            <section class="booking-hero">
+                <div class="container booking-hero-inner">
+                    <h1 class="booking-hero-title">我要預約</h1>
+                    <p class="booking-hero-subtitle">
+                        免去排行程的燒腦，定版行程一鍵預約。
+                    </p>
+                </div>
+            </section>
+
+            <section class="rental-breadcrumb">
+                <div class="container">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <ol class="breadcrumb-list">
+                            <li><a href="/pages/index.html">首頁</a></li>
+                            <li aria-current="page">我要預約</li>
+                        </ol>
+                    </nav>
+                </div>
+            </section>
+
+            <section class="booking-body">
+                <div class="container booking-body-inner">
+                    <div class="booking-header">
+                        <div class="booking-heading">
+                            <h2 class="booking-title">我要預約</h2>
+                            <p class="booking-subtitle">
+                                請選擇服務、填寫資訊，確認行程與費用後完成結帳。
+                            </p>
+                        </div>
+                        <div class="booking-actions">
+                            <a href="#" class="btn-back">
+                                <img
+                                    src="../assets/images/icon-arrow-left.svg"
+                                    alt=""
+                                    width="18"
+                                    height="18"
+                                />
+                                返回上一頁
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="trip-select" id="trip-select">
+                        <button
+                            type="button"
+                            class="trip-select-trigger"
+                            id="trip-select-trigger"
+                            aria-expanded="false"
+                            aria-controls="trip-select-panel"
+                        >
+                            <span>請選擇服務項目</span>
+                            <span class="trip-select-caret" aria-hidden="true"
+                                >▶</span
+                            >
+                        </button>
+                        <div class="trip-select-panel" id="trip-select-panel">
+                            <!--
+                                Temporary Phase 1 demo data only (no CMS/API yet).
+                                Every rendered region/county row below has at
+                                least one real child, per the empty-data rule —
+                                none are decorative dead ends.
+                            -->
+                            <ul class="trip-tree">
+                                <li class="trip-tree-node trip-tree-node--0">
+                                    <div class="trip-tree-row">
+                                        <span class="trip-tree-chip">
+                                            <img
+                                                src="../assets/images/icon-car.svg"
+                                                alt=""
+                                                width="16"
+                                                height="16"
+                                            />
+                                            <span class="trip-tree-label"
+                                                >推薦行程</span
+                                            >
+                                        </span>
+                                        <img
+                                            class="trip-tree-chevron"
+                                            src="../assets/images/icon-chevron-down.svg"
+                                            alt=""
+                                            width="16"
+                                            height="16"
+                                        />
+                                    </div>
+                                    <ul class="trip-tree-children">
+                                        <!-- 北部 -->
+                                        <li
+                                            class="trip-tree-node trip-tree-node--1 trip-tree-node--accordion"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="trip-tree-row trip-tree-trigger"
+                                                data-trip-accordion-trigger
+                                                aria-expanded="false"
+                                                aria-controls="trip-region-north"
+                                            >
+                                                <span class="trip-tree-chip">
+                                                    <span
+                                                        class="trip-tree-label"
+                                                        >北部</span
+                                                    >
+                                                </span>
+                                                <img
+                                                    class="trip-tree-chevron"
+                                                    src="../assets/images/icon-chevron-down.svg"
+                                                    alt=""
+                                                    width="16"
+                                                    height="16"
+                                                />
+                                            </button>
+                                            <ul
+                                                class="trip-tree-children"
+                                                id="trip-region-north"
+                                                data-trip-accordion-panel
+                                            >
+                                                <li
+                                                    class="trip-tree-node trip-tree-node--2 trip-tree-node--accordion"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="trip-tree-row trip-tree-trigger"
+                                                        data-trip-accordion-trigger
+                                                        aria-expanded="false"
+                                                        aria-controls="trip-county-taipei"
+                                                    >
+                                                        <span
+                                                            class="trip-tree-chip"
+                                                        >
+                                                            <span
+                                                                class="trip-tree-label"
+                                                                >台北</span
+                                                            >
+                                                        </span>
+                                                        <img
+                                                            class="trip-tree-chevron"
+                                                            src="../assets/images/icon-chevron-down.svg"
+                                                            alt=""
+                                                            width="16"
+                                                            height="16"
+                                                        />
+                                                    </button>
+                                                    <ul
+                                                        class="trip-tree-children"
+                                                        id="trip-county-taipei"
+                                                        data-trip-accordion-panel
+                                                    >
+                                                        <li
+                                                            class="trip-tree-node trip-tree-node--3"
+                                                        >
+                                                            <a
+                                                                href="/pages/booking-entry.html"
+                                                                class="trip-tree-row trip-tree-leaf"
+                                                            >
+                                                                <span
+                                                                    class="trip-tree-chip"
+                                                                >
+                                                                    <span
+                                                                        class="trip-tree-label"
+                                                                        >測試行程
+                                                                        A</span
+                                                                    >
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li
+                                                            class="trip-tree-node trip-tree-node--3"
+                                                        >
+                                                            <a
+                                                                href="/pages/booking-entry.html"
+                                                                class="trip-tree-row trip-tree-leaf"
+                                                            >
+                                                                <span
+                                                                    class="trip-tree-chip"
+                                                                >
+                                                                    <span
+                                                                        class="trip-tree-label"
+                                                                        >測試行程
+                                                                        B</span
+                                                                    >
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li
+                                                    class="trip-tree-node trip-tree-node--2 trip-tree-node--accordion"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="trip-tree-row trip-tree-trigger"
+                                                        data-trip-accordion-trigger
+                                                        aria-expanded="false"
+                                                        aria-controls="trip-county-newtaipei"
+                                                    >
+                                                        <span
+                                                            class="trip-tree-chip"
+                                                        >
+                                                            <span
+                                                                class="trip-tree-label"
+                                                                >新北</span
+                                                            >
+                                                        </span>
+                                                        <img
+                                                            class="trip-tree-chevron"
+                                                            src="../assets/images/icon-chevron-down.svg"
+                                                            alt=""
+                                                            width="16"
+                                                            height="16"
+                                                        />
+                                                    </button>
+                                                    <ul
+                                                        class="trip-tree-children"
+                                                        id="trip-county-newtaipei"
+                                                        data-trip-accordion-panel
+                                                    >
+                                                        <li
+                                                            class="trip-tree-node trip-tree-node--3"
+                                                        >
+                                                            <a
+                                                                href="/pages/booking-entry.html"
+                                                                class="trip-tree-row trip-tree-leaf"
+                                                            >
+                                                                <span
+                                                                    class="trip-tree-chip"
+                                                                >
+                                                                    <span
+                                                                        class="trip-tree-label"
+                                                                        >測試行程
+                                                                        C</span
+                                                                    >
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!-- 中部 -->
+                                        <li
+                                            class="trip-tree-node trip-tree-node--1 trip-tree-node--accordion"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="trip-tree-row trip-tree-trigger"
+                                                data-trip-accordion-trigger
+                                                aria-expanded="false"
+                                                aria-controls="trip-region-central"
+                                            >
+                                                <span class="trip-tree-chip">
+                                                    <span
+                                                        class="trip-tree-label"
+                                                        >中部</span
+                                                    >
+                                                </span>
+                                                <img
+                                                    class="trip-tree-chevron"
+                                                    src="../assets/images/icon-chevron-down.svg"
+                                                    alt=""
+                                                    width="16"
+                                                    height="16"
+                                                />
+                                            </button>
+                                            <ul
+                                                class="trip-tree-children"
+                                                id="trip-region-central"
+                                                data-trip-accordion-panel
+                                            >
+                                                <li
+                                                    class="trip-tree-node trip-tree-node--2 trip-tree-node--accordion"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="trip-tree-row trip-tree-trigger"
+                                                        data-trip-accordion-trigger
+                                                        aria-expanded="false"
+                                                        aria-controls="trip-county-taichung"
+                                                    >
+                                                        <span
+                                                            class="trip-tree-chip"
+                                                        >
+                                                            <span
+                                                                class="trip-tree-label"
+                                                                >台中</span
+                                                            >
+                                                        </span>
+                                                        <img
+                                                            class="trip-tree-chevron"
+                                                            src="../assets/images/icon-chevron-down.svg"
+                                                            alt=""
+                                                            width="16"
+                                                            height="16"
+                                                        />
+                                                    </button>
+                                                    <ul
+                                                        class="trip-tree-children"
+                                                        id="trip-county-taichung"
+                                                        data-trip-accordion-panel
+                                                    >
+                                                        <li
+                                                            class="trip-tree-node trip-tree-node--3"
+                                                        >
+                                                            <a
+                                                                href="/pages/booking-entry.html"
+                                                                class="trip-tree-row trip-tree-leaf"
+                                                            >
+                                                                <span
+                                                                    class="trip-tree-chip"
+                                                                >
+                                                                    <span
+                                                                        class="trip-tree-label"
+                                                                        >測試行程
+                                                                        D</span
+                                                                    >
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li
+                                                    class="trip-tree-node trip-tree-node--2 trip-tree-node--accordion"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="trip-tree-row trip-tree-trigger"
+                                                        data-trip-accordion-trigger
+                                                        aria-expanded="false"
+                                                        aria-controls="trip-county-nantou"
+                                                    >
+                                                        <span
+                                                            class="trip-tree-chip"
+                                                        >
+                                                            <span
+                                                                class="trip-tree-label"
+                                                                >南投</span
+                                                            >
+                                                        </span>
+                                                        <img
+                                                            class="trip-tree-chevron"
+                                                            src="../assets/images/icon-chevron-down.svg"
+                                                            alt=""
+                                                            width="16"
+                                                            height="16"
+                                                        />
+                                                    </button>
+                                                    <ul
+                                                        class="trip-tree-children"
+                                                        id="trip-county-nantou"
+                                                        data-trip-accordion-panel
+                                                    >
+                                                        <li
+                                                            class="trip-tree-node trip-tree-node--3"
+                                                        >
+                                                            <a
+                                                                href="/pages/booking-entry.html"
+                                                                class="trip-tree-row trip-tree-leaf"
+                                                            >
+                                                                <span
+                                                                    class="trip-tree-chip"
+                                                                >
+                                                                    <span
+                                                                        class="trip-tree-label"
+                                                                        >日月潭旅遊</span
+                                                                    >
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li
+                                                            class="trip-tree-node trip-tree-node--3"
+                                                        >
+                                                            <a
+                                                                href="/pages/booking-entry.html"
+                                                                class="trip-tree-row trip-tree-leaf"
+                                                            >
+                                                                <span
+                                                                    class="trip-tree-chip"
+                                                                >
+                                                                    <span
+                                                                        class="trip-tree-label"
+                                                                        >清境旅遊</span
+                                                                    >
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!-- 南部 -->
+                                        <li
+                                            class="trip-tree-node trip-tree-node--1 trip-tree-node--accordion"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="trip-tree-row trip-tree-trigger"
+                                                data-trip-accordion-trigger
+                                                aria-expanded="false"
+                                                aria-controls="trip-region-south"
+                                            >
+                                                <span class="trip-tree-chip">
+                                                    <span
+                                                        class="trip-tree-label"
+                                                        >南部</span
+                                                    >
+                                                </span>
+                                                <img
+                                                    class="trip-tree-chevron"
+                                                    src="../assets/images/icon-chevron-down.svg"
+                                                    alt=""
+                                                    width="16"
+                                                    height="16"
+                                                />
+                                            </button>
+                                            <ul
+                                                class="trip-tree-children"
+                                                id="trip-region-south"
+                                                data-trip-accordion-panel
+                                            >
+                                                <li
+                                                    class="trip-tree-node trip-tree-node--2 trip-tree-node--accordion"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="trip-tree-row trip-tree-trigger"
+                                                        data-trip-accordion-trigger
+                                                        aria-expanded="false"
+                                                        aria-controls="trip-county-kaohsiung"
+                                                    >
+                                                        <span
+                                                            class="trip-tree-chip"
+                                                        >
+                                                            <span
+                                                                class="trip-tree-label"
+                                                                >高雄</span
+                                                            >
+                                                        </span>
+                                                        <img
+                                                            class="trip-tree-chevron"
+                                                            src="../assets/images/icon-chevron-down.svg"
+                                                            alt=""
+                                                            width="16"
+                                                            height="16"
+                                                        />
+                                                    </button>
+                                                    <ul
+                                                        class="trip-tree-children"
+                                                        id="trip-county-kaohsiung"
+                                                        data-trip-accordion-panel
+                                                    >
+                                                        <li
+                                                            class="trip-tree-node trip-tree-node--3"
+                                                        >
+                                                            <a
+                                                                href="/pages/booking-entry.html"
+                                                                class="trip-tree-row trip-tree-leaf"
+                                                            >
+                                                                <span
+                                                                    class="trip-tree-chip"
+                                                                >
+                                                                    <span
+                                                                        class="trip-tree-label"
+                                                                        >測試行程
+                                                                        E</span
+                                                                    >
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <!-- 東部 -->
+                                        <li
+                                            class="trip-tree-node trip-tree-node--1 trip-tree-node--accordion"
+                                        >
+                                            <button
+                                                type="button"
+                                                class="trip-tree-row trip-tree-trigger"
+                                                data-trip-accordion-trigger
+                                                aria-expanded="false"
+                                                aria-controls="trip-region-east"
+                                            >
+                                                <span class="trip-tree-chip">
+                                                    <span
+                                                        class="trip-tree-label"
+                                                        >東部</span
+                                                    >
+                                                </span>
+                                                <img
+                                                    class="trip-tree-chevron"
+                                                    src="../assets/images/icon-chevron-down.svg"
+                                                    alt=""
+                                                    width="16"
+                                                    height="16"
+                                                />
+                                            </button>
+                                            <ul
+                                                class="trip-tree-children"
+                                                id="trip-region-east"
+                                                data-trip-accordion-panel
+                                            >
+                                                <li
+                                                    class="trip-tree-node trip-tree-node--2 trip-tree-node--accordion"
+                                                >
+                                                    <button
+                                                        type="button"
+                                                        class="trip-tree-row trip-tree-trigger"
+                                                        data-trip-accordion-trigger
+                                                        aria-expanded="false"
+                                                        aria-controls="trip-county-hualien"
+                                                    >
+                                                        <span
+                                                            class="trip-tree-chip"
+                                                        >
+                                                            <span
+                                                                class="trip-tree-label"
+                                                                >花蓮</span
+                                                            >
+                                                        </span>
+                                                        <img
+                                                            class="trip-tree-chevron"
+                                                            src="../assets/images/icon-chevron-down.svg"
+                                                            alt=""
+                                                            width="16"
+                                                            height="16"
+                                                        />
+                                                    </button>
+                                                    <ul
+                                                        class="trip-tree-children"
+                                                        id="trip-county-hualien"
+                                                        data-trip-accordion-panel
+                                                    >
+                                                        <li
+                                                            class="trip-tree-node trip-tree-node--3"
+                                                        >
+                                                            <a
+                                                                href="/pages/booking-entry.html"
+                                                                class="trip-tree-row trip-tree-leaf"
+                                                            >
+                                                                <span
+                                                                    class="trip-tree-chip"
+                                                                >
+                                                                    <span
+                                                                        class="trip-tree-label"
+                                                                        >測試行程
+                                                                        F</span
+                                                                    >
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        {{> footer }}
+
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>
