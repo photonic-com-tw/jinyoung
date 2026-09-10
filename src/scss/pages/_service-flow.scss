@@ -1,0 +1,335 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-heading-teal: #0b8b77;
+$color-muted: #6a7282;
+$color-step-number-text: #0b4f4a;
+$color-note-text: #7e2a0c;
+$color-substep-bg: #fff7ed;
+$color-card-border: #e5e7eb;
+
+// Figma 服務流程 1315:1231 (Desktop) / 1379:13710 (Mobile)
+// Page-level gutters only — do not change global .container token.
+// Mobile: Figma px-24. Desktop: padding 0 so max-width 1200 ≈ Figma 120px side gutters at 1440.
+.service-flow {
+    @include mobile {
+        .container {
+            padding-inline: 24px;
+        }
+    }
+
+    @include desktop {
+        .container {
+            padding-inline: 0;
+        }
+    }
+}
+
+.service-flow-breadcrumb {
+    padding-block: 32px;
+
+    .breadcrumb-list {
+        color: v.$color-heading-text;
+        // Figma breadcrumb text: leading-[16px] exactly (not the shared component's default).
+        line-height: 16px;
+
+        li:not(:last-child)::after {
+            color: v.$color-gray-text;
+        }
+
+        li[aria-current="page"] {
+            color: v.$color-teal-dark;
+        }
+
+        a:hover {
+            color: v.$color-teal;
+        }
+    }
+}
+
+.service-flow-heading {
+    text-align: center;
+    // Figma Title section: py-80 on both desktop and mobile frames
+    padding-block: 80px;
+
+    h1 {
+        font-size: 36px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        line-height: 1.2;
+        color: $color-heading-teal;
+        margin: 0 0 16px;
+    }
+
+    p {
+        font-size: 20px;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        color: $color-muted;
+        margin: 0;
+    }
+}
+
+.service-flow-steps {
+    // Mobile process: p-24 + gap-40
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        // Desktop process: py-80 (heading section already has py-80)
+        padding-block: 80px;
+    }
+
+    // .container is the direct (and only) flex child of the section — the
+    // gap must live here so it actually spaces the step/note/complete blocks.
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        @include pad {
+            gap: 80px;
+        }
+
+        @include desktop {
+            gap: 120px;
+        }
+    }
+}
+
+.service-flow-step {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include desktop {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        align-items: start;
+    }
+
+    &--2 {
+        @include desktop {
+            .service-flow-step-text {
+                order: 2;
+            }
+
+            .service-flow-step-media {
+                order: 1;
+            }
+        }
+    }
+}
+
+.service-flow-step-text {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.service-flow-step-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .service-flow-step-number {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        background: v.$color-accent-gold;
+        color: $color-step-number-text;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    h2 {
+        // Figma keeps 30px on mobile frame as well
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        line-height: 1.2;
+        color: v.$color-teal-dark;
+        margin: 0;
+    }
+}
+
+.service-flow-step-desc {
+    font-size: 20px;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: $color-muted;
+    margin: 0;
+}
+
+.service-flow-step-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    @include desktop {
+        flex-direction: row;
+        gap: 16px;
+    }
+}
+
+.service-flow-step-card {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    background: v.$color-white;
+    border: 1px solid $color-card-border;
+    border-radius: 16px;
+
+    img {
+        display: block;
+        width: 24px;
+        height: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        color: v.$color-teal-dark;
+        margin: 0;
+    }
+
+    p {
+        font-size: 14px;
+        letter-spacing: 0.7px;
+        line-height: 1.2;
+        color: $color-muted;
+        margin: 0;
+    }
+}
+
+.service-flow-step-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        line-height: 1.2;
+        color: v.$color-teal-dark;
+    }
+
+    img {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.service-flow-step-media {
+    aspect-ratio: 580 / 320;
+    border-radius: 16px;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.service-flow-note {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.service-flow-note-text {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    color: $color-note-text;
+    margin: 0;
+}
+
+.service-flow-substeps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    background: $color-substep-bg;
+    border-radius: 16px;
+
+    @include desktop {
+        flex-direction: row;
+        align-items: center;
+        gap: 80px;
+        padding: 40px;
+    }
+}
+
+.service-flow-substep {
+    flex: 1 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .service-flow-step-number {
+        background: v.$color-mint;
+    }
+}
+
+.service-flow-complete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.service-flow-complete-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    img {
+        display: block;
+        width: 48px;
+        height: 48px;
+    }
+
+    h2 {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        line-height: 1.2;
+        color: v.$color-teal-dark;
+        margin: 0;
+    }
+}
+
+.service-flow-complete-media {
+    width: 100%;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}

@@ -116,6 +116,102 @@ document.querySelectorAll('[data-trip-accordion-trigger]').forEach((trigger) => 
   });
 });
 
+// FAQ accordion: isolated from trip accordion. Height slide via measured
+// scrollHeight; [hidden] only after collapse finishes. Icons CSS-driven via
+// aria-expanded.
+const FAQ_ACCORDION_DURATION = 250;
+const faqAccordionReducedMotion = window.matchMedia(
+  '(prefers-reduced-motion: reduce)',
+);
+
+function getFaqAccordionDuration() {
+  return faqAccordionReducedMotion.matches ? 0 : FAQ_ACCORDION_DURATION;
+}
+
+function animateFaqAccordion(panel, expand) {
+  if (panel._faqAccordionCleanup) {
+    panel._faqAccordionCleanup();
+  }
+
+  const duration = getFaqAccordionDuration();
+
+  if (duration === 0) {
+    panel.style.transition = '';
+    panel.style.height = '';
+    panel.style.overflow = '';
+    if (expand) {
+      panel.removeAttribute('hidden');
+    } else {
+      panel.setAttribute('hidden', '');
+    }
+    panel._faqAccordionCleanup = null;
+    return;
+  }
+
+  const wasHidden = panel.hasAttribute('hidden');
+  const currentHeight = wasHidden ? 0 : panel.getBoundingClientRect().height;
+
+  panel.style.overflow = 'hidden';
+  panel.style.transition = 'none';
+
+  if (expand) {
+    panel.removeAttribute('hidden');
+    panel.style.height = `${currentHeight}px`;
+  } else {
+    panel.removeAttribute('hidden');
+    // Prefer measured content height; fall back to current if mid-animation.
+    panel.style.height = `${Math.max(panel.scrollHeight, currentHeight)}px`;
+  }
+
+  void panel.offsetHeight;
+
+  const targetHeight = expand ? panel.scrollHeight : 0;
+  panel.style.transition = `height ${duration}ms ease-out`;
+  panel.style.height = `${targetHeight}px`;
+
+  const cleanup = (finished) => {
+    panel.removeEventListener('transitionend', onTransitionEnd);
+    if (panel._faqAccordionCleanupTimer) {
+      clearTimeout(panel._faqAccordionCleanupTimer);
+      panel._faqAccordionCleanupTimer = null;
+    }
+    panel.style.transition = '';
+    if (finished) {
+      if (expand) {
+        panel.style.height = '';
+        panel.style.overflow = '';
+      } else {
+        panel.setAttribute('hidden', '');
+        panel.style.height = '';
+        panel.style.overflow = '';
+      }
+    }
+    panel._faqAccordionCleanup = null;
+  };
+
+  const onTransitionEnd = (event) => {
+    if (event.target !== panel || event.propertyName !== 'height') return;
+    cleanup(true);
+  };
+
+  panel._faqAccordionCleanup = () => cleanup(false);
+  panel.addEventListener('transitionend', onTransitionEnd);
+  // Fallback if transitionend is skipped (rapid reflow / interrupted).
+  panel._faqAccordionCleanupTimer = setTimeout(() => cleanup(true), duration + 50);
+}
+
+document.querySelectorAll('[data-faq-accordion-trigger]').forEach((trigger) => {
+  trigger.addEventListener('click', () => {
+    const panelId = trigger.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
+    if (!panel || !panel.hasAttribute('data-faq-accordion-panel')) return;
+
+    const willExpand = trigger.getAttribute('aria-expanded') !== 'true';
+    trigger.setAttribute('aria-expanded', String(willExpand));
+    animateFaqAccordion(panel, willExpand);
+  });
+});
+
 // Booking Details: reuse rental-detail native Constraint Validation (required /
 // type=email / type=tel). On valid submit, continue to booking-confirmation.
 // Future source toggling should hide via [hidden]/display:none and disable

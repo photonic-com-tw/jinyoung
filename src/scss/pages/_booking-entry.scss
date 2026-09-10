@@ -4,7 +4,6 @@
 $color-muted: #6a7282;
 $color-heading-teal: #0b8b77;
 $color-card-border: #e5e7eb;
-$color-consult-bg: #f0fdfa;
 
 // Shared Booking Entry (Figma 1362:5936 desktop Recommended Trip variant).
 // Representative content: 苗栗市旅遊 (parent of node 1362:5937 Header).
@@ -203,56 +202,4 @@ $color-consult-bg: #f0fdfa;
     color: v.$color-teal-dark;
     border-radius: 8px;
     justify-content: center;
-}
-
-.booking-entry-consult {
-    background: $color-consult-bg;
-    padding-block: 40px;
-
-    @include pad {
-        padding-block: 64px;
-    }
-
-    @include desktop {
-        padding-block: 64px;
-    }
-}
-
-.booking-entry-consult-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    text-align: center;
-}
-
-.booking-entry-consult-text {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    h2 {
-        font-size: 24px;
-        font-weight: 700;
-        color: v.$color-teal;
-        letter-spacing: 1.2px;
-        margin: 0;
-
-        @include pad {
-            font-size: 30px;
-            letter-spacing: 1.5px;
-        }
-
-        @include desktop {
-            font-size: 30px;
-            letter-spacing: 1.5px;
-        }
-    }
-
-    p {
-        font-size: 16px;
-        color: v.$color-heading-text;
-        letter-spacing: 0.8px;
-        margin: 0;
-    }
 }

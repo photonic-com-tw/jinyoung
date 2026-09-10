@@ -4,7 +4,6 @@
 $color-muted: #6a7282;
 $color-heading-teal: #0b8b77;
 $color-card-border: #e5e7eb;
-$color-cta-bg: #f0fdfa;
 
 // Rental Detail UI pattern (Figma 1323:1555 desktop / 1380:10359 mobile)
 // One shared second-level template for all 租車服務 detail items:
@@ -263,56 +262,4 @@ $color-cta-bg: #f0fdfa;
 .rental-detail-form-submit {
     width: 100%;
     height: 52px;
-}
-
-.rental-detail-cta {
-    background: $color-cta-bg;
-    padding-block: 40px;
-
-    @include pad {
-        padding-block: 64px;
-    }
-
-    @include desktop {
-        padding-block: 64px;
-    }
-}
-
-.rental-detail-cta-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    text-align: center;
-}
-
-.rental-detail-cta-text {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-
-    h2 {
-        font-size: 24px;
-        font-weight: 700;
-        color: v.$color-teal;
-        letter-spacing: 1.2px;
-        margin: 0;
-
-        @include pad {
-            font-size: 30px;
-            letter-spacing: 1.5px;
-        }
-
-        @include desktop {
-            font-size: 30px;
-            letter-spacing: 1.5px;
-        }
-    }
-
-    p {
-        font-size: 16px;
-        color: v.$color-heading-text;
-        letter-spacing: 0.8px;
-        margin: 0;
-    }
 }

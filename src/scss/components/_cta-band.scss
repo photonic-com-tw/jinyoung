@@ -1,0 +1,100 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+// Shared mint CTA band above footer (Figma customservice / 常見問題).
+// Pages: faq, service-flow, booking-entry, rental-detail.
+$color-cta-band-bg: #f0fdfa;
+
+.cta-band-wave {
+    display: block;
+    width: 100%;
+    line-height: 0;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.cta-band {
+    background: $color-cta-band-bg;
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 64px;
+    }
+
+    @include desktop {
+        padding-block: 64px;
+    }
+}
+
+.cta-band-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+
+    @include pad {
+        gap: 40px;
+    }
+
+    @include desktop {
+        gap: 40px;
+    }
+}
+
+.cta-band-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 1.1px;
+        line-height: 1.2;
+        color: v.$color-teal;
+        margin: 0;
+
+        @include pad {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+
+        @include desktop {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        line-height: 1.2;
+        color: v.$color-heading-text;
+        margin: 0;
+    }
+}
+
+.cta-band-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include pad {
+        flex-direction: row;
+    }
+
+    @include desktop {
+        flex-direction: row;
+    }
+}
+
+.cta-band-hours {
+    font-size: 14px;
+    color: #6a7282;
+    margin: 0;
+}

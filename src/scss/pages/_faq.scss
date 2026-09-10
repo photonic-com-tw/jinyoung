@@ -1,0 +1,241 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-heading-teal: #0b8b77;
+$color-muted: #6a7282;
+$color-item-border: #ffb86a;
+
+// Figma 常見問題 1317:1323 (Desktop) / 1379:13935 (Mobile) — no hero banner,
+// breadcrumb sits directly on white background.
+.faq-breadcrumb {
+    padding-block: 32px;
+
+    .breadcrumb-list {
+        color: v.$color-heading-text;
+
+        li:not(:last-child)::after {
+            color: v.$color-gray-text;
+        }
+
+        li[aria-current="page"] {
+            color: v.$color-teal-dark;
+        }
+
+        a:hover {
+            color: v.$color-teal;
+        }
+    }
+}
+
+.faq-heading {
+    text-align: center;
+    padding-block: 40px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        padding-block: 80px;
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        color: $color-heading-teal;
+        margin: 0 0 16px;
+
+        @include pad {
+            font-size: 36px;
+            letter-spacing: 1.8px;
+        }
+
+        @include desktop {
+            font-size: 36px;
+            letter-spacing: 1.8px;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        color: $color-muted;
+        margin: 0;
+
+        @include pad {
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        @include desktop {
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+.faq-content {
+    padding-bottom: 40px;
+
+    @include pad {
+        padding-bottom: 80px;
+    }
+
+    @include desktop {
+        padding-bottom: 80px;
+    }
+}
+
+.faq-category {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 16px;
+    background: v.$color-accent-gold;
+    border-radius: 16px;
+
+    @include pad {
+        gap: 32px;
+        padding: 40px;
+    }
+
+    @include desktop {
+        gap: 32px;
+        padding: 40px;
+    }
+}
+
+.faq-category-head {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    .faq-category-bar {
+        flex-shrink: 0;
+        width: 8px;
+        height: 40px;
+        border-radius: 4px;
+        background: v.$color-teal-dark;
+    }
+
+    h2 {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 1.1px;
+        color: v.$color-teal-dark;
+        margin: 0;
+
+        @include pad {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+
+        @include desktop {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+    }
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    background: v.$color-white;
+    border: 1px solid $color-item-border;
+    border-radius: 12px;
+}
+
+.faq-item-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 24px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+
+    span {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: v.$color-teal;
+
+        @include pad {
+            font-size: 20px;
+        }
+
+        @include desktop {
+            font-size: 20px;
+        }
+    }
+
+    img {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+    }
+
+    .icon-minus {
+        display: none;
+    }
+
+    &[aria-expanded="true"] {
+        .icon-plus {
+            display: none;
+        }
+
+        .icon-minus {
+            display: block;
+        }
+    }
+}
+
+.faq-item-panel {
+    overflow: hidden;
+
+    // Keep [hidden] for a11y / collapsed end-state. During height animation JS
+    // removes [hidden] first (expand) or sets it only after collapse finishes.
+    &[hidden] {
+        display: none;
+    }
+}
+
+.faq-item-panel-body {
+    padding: 0 24px 24px;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.7px;
+    color: v.$color-heading-text;
+
+    @include pad {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+    }
+
+    @include desktop {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+    }
+
+    p {
+        margin: 0 0 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-item-panel {
+        transition: none !important;
+    }
+}
