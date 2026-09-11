@@ -3,9 +3,6 @@
 
 $color-muted: #6a7282;
 
-// 自駕租車-only: 租車服務 policy text blocks (Figma 1563:25486 desktop / 1563:25514 mobile)
-// Page-local — mirrors _rental-charter.scss's .charter-info-block, kept separate rather than
-// promoted into _rental.scss since only two of the four family pages evidence this block so far.
 .self-drive-info-block {
     font-size: 16px;
     line-height: 1.2;

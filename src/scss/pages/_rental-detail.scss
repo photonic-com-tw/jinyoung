@@ -5,11 +5,6 @@ $color-muted: #6a7282;
 $color-heading-teal: #0b8b77;
 $color-card-border: #e5e7eb;
 
-// Rental Detail UI pattern (Figma 1323:1555 desktop / 1380:10359 mobile)
-// One shared second-level template for all 租車服務 detail items:
-// 機場接送, 商務包車, 自駕租車, 長照服務. Content-only differences are
-// handled inside .rental-detail-card (optional media child, table markup,
-// or an empty "無" body) rather than page-specific variants.
 .rental-detail-body {
     background: v.$color-white;
     padding-block: 24px;

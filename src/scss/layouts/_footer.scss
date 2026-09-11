@@ -11,8 +11,6 @@
     }
 }
 
-// Mint CTA band pages: continue teal/50 through skyline transparent sky
-// so CTA and footer meet with no white gap (Figma 1677:15788).
 body:has(.cta-band) .site-footer-skyline {
     background: #f0fdfa;
 }
