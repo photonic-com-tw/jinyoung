@@ -1,0 +1,912 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-orange-50: #fff7ed;
+$color-gray-500: #6a7282;
+
+// ---------------------------------------------------------------------------
+// Shared section rhythm
+// ---------------------------------------------------------------------------
+
+.home-section-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include pad {
+        gap: 40px;
+    }
+
+    @include desktop {
+        gap: 40px;
+    }
+}
+
+.home-section-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    width: 100%;
+
+    @include pad {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    @include desktop {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+
+.home-section-title {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        line-height: 1.2;
+        color: v.$color-teal;
+        margin: 0;
+    }
+
+    p {
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        line-height: 1.2;
+        color: v.$color-heading-text;
+        margin: 0;
+    }
+}
+
+.home-section-title--center {
+    align-items: center;
+    text-align: center;
+
+    @include pad {
+        max-width: 900px;
+        margin-inline: auto;
+    }
+
+    @include desktop {
+        max-width: 900px;
+        margin-inline: auto;
+    }
+}
+
+.btn-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 9px 25px;
+    border: 1px solid v.$color-teal;
+    border-radius: 99px;
+    background: v.$color-white;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: v.$color-teal;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+        opacity: 0.7;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
+
+.home-hero {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+
+    @include pad {
+        height: 686px;
+    }
+
+    @include desktop {
+        height: 686px;
+    }
+}
+
+.home-hero-slides {
+    position: absolute;
+    inset: 0;
+}
+
+.home-hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+
+    &.is-active {
+        opacity: 1;
+        z-index: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-hero-media {
+        transition: none;
+    }
+}
+
+.home-hero-panel {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 279px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px 40px 40px;
+    background: linear-gradient(to right, v.$color-teal 60%, rgba(0, 0, 0, 0));
+
+    @include pad {
+        width: 720px;
+        padding: 24px 80px 40px;
+    }
+
+    @include desktop {
+        width: 720px;
+        padding: 24px 80px 40px;
+    }
+}
+
+.home-hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    p {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        color: v.$color-white;
+        text-shadow: 0 0 20px $color-gray-500;
+
+        @include pad {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+
+        @include desktop {
+            font-size: 30px;
+            letter-spacing: 1.5px;
+        }
+    }
+}
+
+.home-hero-desc {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    line-height: 1.2;
+    color: v.$color-white;
+
+    @include pad {
+        font-size: 24px;
+        letter-spacing: 1.2px;
+    }
+
+    @include desktop {
+        font-size: 24px;
+        letter-spacing: 1.2px;
+    }
+}
+
+.home-hero .btn-cta {
+    font-size: 16px;
+    letter-spacing: 0.8px;
+}
+
+.home-hero-dots {
+    display: none;
+    z-index: 3;
+
+    @include pad {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%);
+    }
+
+    @include desktop {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        bottom: 30px;
+        transform: translateX(-50%);
+    }
+
+    span,
+    button {
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        border: 0;
+        border-radius: 5px;
+        background: v.$color-white;
+        cursor: pointer;
+
+        &.is-active {
+            background: v.$color-teal;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Floating social / back-to-top
+// ---------------------------------------------------------------------------
+
+.home-social {
+    position: fixed;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 8px;
+    background: v.$color-white;
+    border-radius: 999px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.home-social-item {
+    display: block;
+    line-height: 0;
+
+    &[role="img"] {
+        cursor: default;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Services / Trips shared card grid
+// ---------------------------------------------------------------------------
+
+.home-services {
+    position: relative;
+    padding: 24px 0;
+
+    @include pad {
+        padding: 64px 0;
+    }
+
+    @include desktop {
+        padding: 64px 0;
+    }
+}
+
+.home-services-bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 305.5px;
+    background: #f0fdfa;
+}
+
+.home-services .home-section-inner,
+.home-services .container {
+    position: relative;
+}
+
+// Match services / trips / news pages: 1 col mobile → 2 col pad → N col desktop.
+.home-card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+
+    @include pad {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+    }
+
+    &--services {
+        @include desktop {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+        }
+    }
+
+    &--trips {
+        @include desktop {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+    }
+}
+
+.home-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: v.$color-white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(44, 57, 71, 0.2);
+    color: inherit;
+    text-decoration: none;
+}
+
+.home-card-media {
+    height: 200px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.home-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+
+    h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: v.$color-heading-text;
+    }
+}
+
+.home-card-desc {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    color: $color-gray-500;
+}
+
+.home-card-suit {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    color: v.$color-teal;
+}
+
+.home-card-price {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: v.$color-teal-dark;
+}
+
+.home-scroll-band {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.home-scroll-track {
+    display: flex;
+    width: max-content;
+    height: 100%;
+
+    img {
+        display: block;
+        flex-shrink: 0;
+        height: 100%;
+        width: auto;
+        max-width: none;
+    }
+}
+
+@include mobile {
+    .home-scroll-track {
+        transform: translate3d(-2498px, 0, 0);
+    }
+}
+
+// Trips
+.home-trips {
+    background: $color-orange-50;
+    padding: 24px 0;
+
+    @include pad {
+        padding: 64px 0;
+    }
+
+    @include desktop {
+        padding: 64px 0;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Path decorative dividers
+// ---------------------------------------------------------------------------
+
+.home-path {
+    position: relative;
+    height: 82px;
+    overflow: hidden;
+
+    @include pad {
+        height: 102px;
+    }
+
+    @include desktop {
+        height: 102px;
+    }
+}
+
+.home-path-line {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: auto;
+    max-width: none;
+}
+
+.home-path-pin {
+    position: absolute;
+    width: 20px;
+    height: 32px;
+}
+
+.home-path--1 {
+    .home-path-line {
+        left: 0;
+    }
+
+    .home-path-pin {
+        left: 343px;
+        top: 41px;
+    }
+}
+
+.home-path--2 {
+    display: flex;
+    justify-content: flex-end;
+
+    .home-path-line {
+        right: 0;
+    }
+
+    .home-path-pin {
+        right: 390px;
+        top: 63px;
+
+        @include pad {
+            right: 410px;
+        }
+
+        @include desktop {
+            right: 410px;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Process
+// ---------------------------------------------------------------------------
+
+.home-process {
+    padding: 24px;
+
+    @include pad {
+        padding: 64px 120px;
+    }
+
+    @include desktop {
+        padding: 64px 120px;
+    }
+}
+
+.home-process-inner {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 24px;
+    min-height: 1029px;
+
+    @include pad {
+        min-height: 361px;
+        padding: 40px 24px;
+    }
+
+    @include desktop {
+        min-height: 361px;
+        padding: 40px 24px;
+    }
+}
+
+.home-process-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    // Mobile uses process-bg-mobile.jpg (pre-cropped van-right); desktop stays centered.
+    object-position: center;
+}
+
+.home-process-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.home-process-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+
+    @include pad {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    @include desktop {
+        flex-direction: row;
+        align-items: stretch;
+    }
+}
+
+.home-process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 154px;
+    box-sizing: border-box;
+    padding: 24px 40px;
+    background: v.$color-white;
+    border-radius: 15.118px;
+    flex-shrink: 0;
+
+    @include pad {
+        width: auto;
+    }
+
+    @include desktop {
+        width: auto;
+    }
+
+    img {
+        display: block;
+        width: 64px;
+        height: 64px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 15.118px;
+        line-height: 22.677px;
+        color: v.$color-heading-text;
+        white-space: nowrap;
+        text-align: center;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// FAQ (homepage-specific dark accordion — differs visually from /faq page)
+// ---------------------------------------------------------------------------
+
+.home-faq {
+    padding: 24px;
+
+    @include pad {
+        padding: 64px 120px;
+    }
+
+    @include desktop {
+        padding: 64px 120px;
+    }
+}
+
+.home-faq-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.home-faq-item {
+    border-bottom: 1px solid v.$color-white;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.home-faq-trigger {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 16px 24px;
+    background: v.$color-teal-dark;
+    border: none;
+    font-family: inherit;
+    text-align: left;
+}
+
+.home-faq-index {
+    flex-shrink: 0;
+    width: 35px;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 1.2;
+    color: v.$color-white;
+}
+
+.home-faq-question {
+    flex: 1 0 0;
+    min-width: 0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    color: v.$color-white;
+}
+
+.home-faq-trigger img {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.home-faq-icon-minus {
+    display: none;
+}
+
+.home-faq-trigger[aria-expanded="true"] {
+    .home-faq-icon-plus {
+        display: none;
+    }
+
+    .home-faq-icon-minus {
+        display: block;
+    }
+}
+
+.home-faq-panel {
+    overflow: hidden;
+    background: v.$color-teal-dark;
+
+    &[hidden] {
+        display: none;
+    }
+}
+
+.home-faq-panel-body {
+    padding: 0 24px 16px;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: 0.8px;
+    color: v.$color-white;
+
+    p {
+        margin: 0 0 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-faq-panel {
+        transition: none !important;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// News (homepage teaser cards — simpler than /news page cards)
+// ---------------------------------------------------------------------------
+
+.home-news {
+    padding: 0 24px 24px;
+
+    @include pad {
+        padding: 0 120px 64px;
+    }
+
+    @include desktop {
+        padding: 0 120px 64px;
+    }
+}
+
+.home-news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+
+    @include pad {
+        flex-direction: row;
+    }
+
+    @include desktop {
+        flex-direction: row;
+    }
+}
+
+.home-news-card {
+    display: flex;
+    flex-direction: column;
+
+    @include pad {
+        flex: 1 0 0;
+        min-width: 0;
+    }
+
+    @include desktop {
+        flex: 1 0 0;
+        min-width: 0;
+    }
+}
+
+.home-news-media {
+    height: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.home-news-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0;
+
+    h3 {
+        margin: 0;
+        padding-bottom: 8px;
+        border-bottom: 1px solid v.$color-teal;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        line-height: 1.2;
+        color: v.$color-heading-text;
+    }
+}
+
+.home-news-date {
+    margin: 0;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    color: $color-gray-500;
+}
+
+.home-news-excerpt {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    color: $color-gray-500;
+}
+
+// ---------------------------------------------------------------------------
+// Transition shape + Final CTA
+// ---------------------------------------------------------------------------
+
+.home-shape {
+    width: 100%;
+    line-height: 0;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.home-cta {
+    background: #f0fdfa;
+    padding: 0 24px 24px;
+
+    @include pad {
+        padding: 0 120px 64px;
+    }
+
+    @include desktop {
+        padding: 0 120px 64px;
+    }
+}
+
+.home-cta-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @include pad {
+        gap: 40px;
+    }
+
+    @include desktop {
+        gap: 40px;
+    }
+}
+
+.home-cta-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include pad {
+        flex-direction: row;
+    }
+
+    @include desktop {
+        flex-direction: row;
+    }
+}
+
+.home-cta-card {
+    flex: 1 0 0;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid v.$color-teal;
+    border-radius: 16px;
+    background: v.$color-white;
+    text-decoration: none;
+    color: inherit;
+
+    &:not(a) {
+        cursor: default;
+    }
+
+    h3 {
+        margin: 0 0 16px;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: v.$color-heading-text;
+    }
+
+    p {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: 0.8px;
+        line-height: 1.2;
+        color: $color-gray-500;
+    }
+}
+
+body:has(.home-cta) .site-footer-skyline {
+    background: #f0fdfa;
+}

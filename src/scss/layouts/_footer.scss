@@ -4,6 +4,9 @@
 .site-footer-skyline {
     line-height: 0;
 
+    // Figma Desktop: footer-skyline 1440×66.
+    // Figma Mobile 1378:9413: home-scrollbg 390×143.
+    picture,
     img {
         display: block;
         width: 100%;
