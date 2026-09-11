@@ -1,0 +1,212 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+// Standalone full-screen page — no shared Header/Footer per Figma (node
+// 1359:4017 / 1380:17923). Scoped entirely under .error-page so nothing here
+// can leak into other pages via main.scss.
+
+.error-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: v.$color-white;
+    overflow-x: hidden;
+}
+
+.error-content {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 21.588px;
+    padding: 40px 24px;
+
+    @include pad {
+        gap: 48px;
+        padding: 64px 24px;
+    }
+
+    @include desktop {
+        gap: 48px;
+        padding: 64px 24px;
+    }
+}
+
+.error-illustration {
+    display: block;
+    width: 462.911px;
+    height: auto;
+    max-width: none;
+
+    @include pad {
+        width: min(1006.675px, 100%);
+    }
+
+    @include desktop {
+        width: min(1006.675px, 100%);
+    }
+}
+
+.error-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26.043px;
+    width: 100%;
+    max-width: 390px;
+
+    @include pad {
+        gap: 40px;
+        max-width: 626px;
+    }
+
+    @include desktop {
+        gap: 40px;
+        max-width: 626px;
+    }
+}
+
+.error-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10.417px;
+    width: 100%;
+
+    @include pad {
+        gap: 16px;
+    }
+
+    @include desktop {
+        gap: 16px;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        line-height: 1.2;
+        color: v.$color-teal;
+        text-align: center;
+
+        @include pad {
+            font-size: 36px;
+            letter-spacing: 1.8px;
+        }
+
+        @include desktop {
+            font-size: 36px;
+            letter-spacing: 1.8px;
+        }
+    }
+
+    p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing: 0.8px;
+        line-height: 1.5;
+        color: v.$color-teal;
+        text-align: center;
+
+        @include pad {
+            font-size: 24px;
+            letter-spacing: 1.2px;
+            line-height: 1.2;
+        }
+
+        @include desktop {
+            font-size: 24px;
+            letter-spacing: 1.2px;
+            line-height: 1.2;
+        }
+    }
+}
+
+.error-actions {
+    display: flex;
+    align-items: center;
+    gap: 26.043px;
+
+    @include pad {
+        gap: 40px;
+    }
+
+    @include desktop {
+        gap: 40px;
+    }
+}
+
+.error-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 33.563px;
+    padding: 7.813px 15.626px;
+    border-radius: 0;
+    border: 0.651px solid v.$color-teal;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+
+    @include pad {
+        height: 51.55px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        border-width: 1px;
+        font-size: 24px;
+        letter-spacing: 1.2px;
+    }
+
+    @include desktop {
+        height: 51.55px;
+        padding: 12px 24px;
+        border-radius: 8px;
+        border-width: 1px;
+        font-size: 24px;
+        letter-spacing: 1.2px;
+    }
+
+    &:hover {
+        opacity: 0.85;
+    }
+}
+
+.error-btn--fill {
+    background: v.$color-teal;
+    border-color: v.$color-teal;
+    color: v.$color-white;
+
+    // Beat global `a:link` / `a:visited` (color: inherit) so fill CTA stays white.
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+        color: v.$color-white;
+    }
+}
+
+.error-btn--outline {
+    background: v.$color-white;
+    border-color: v.$color-teal;
+    color: v.$color-teal;
+}
+
+.error-skyline {
+    flex-shrink: 0;
+    width: 100%;
+    line-height: 0;
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}

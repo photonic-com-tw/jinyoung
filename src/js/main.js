@@ -23,6 +23,13 @@ document.querySelectorAll('.has-dropdown > .site-nav-dropdown-trigger').forEach(
   });
 });
 
+// Error page: 重新載入 button just reloads the current document.
+document.querySelectorAll('[data-error-reload]').forEach((button) => {
+  button.addEventListener('click', () => {
+    window.location.reload();
+  });
+});
+
 const TRIP_ACCORDION_DURATION = 220;
 
 // Height slide used by the outer trip-select panel and nested region/county

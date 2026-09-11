@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>頁面暫時無法顯示｜金永國際租賃有限公司</title>
+        {{> head-fonts }}
+    </head>
+    <body class="page-error">
+        <main class="error-page">
+            <div class="error-content">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="../assets/images/error/illustration-mobile.svg" />
+                    <img
+                        class="error-illustration"
+                        src="../assets/images/error/illustration-desktop.svg"
+                        alt="頁面錯誤示意圖"
+                        width="1007"
+                        height="281"
+                    />
+                </picture>
+
+                <div class="error-hero">
+                    <div class="error-text">
+                        <h1>頁面暫時無法顯示</h1>
+                        <p>
+                            抱歉，您要查看的內容目前無法開啟，<br />
+                            請稍後再試，或返回首頁繼續瀏覽。
+                        </p>
+                    </div>
+
+                    <div class="error-actions">
+                        <a href="/pages/index.html" class="error-btn error-btn--fill">回到首頁</a>
+                        <button type="button" class="error-btn error-btn--outline" data-error-reload>重新載入</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-skyline" aria-hidden="true">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="../assets/images/error/skyline-mobile.svg" />
+                    <img src="../assets/images/error/skyline-desktop.svg" alt="" />
+                </picture>
+            </div>
+        </main>
+
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>
