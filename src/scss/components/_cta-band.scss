@@ -1,8 +1,6 @@
 @use "../base/variables" as v;
 @use "../base/mixin" as *;
 
-// Shared mint CTA band above footer (Figma customservice / 常見問題).
-// Pages: faq, service-flow, booking-entry, rental-detail.
 $color-cta-band-bg: #f0fdfa;
 
 .cta-band-wave {

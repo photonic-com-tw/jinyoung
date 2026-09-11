@@ -6,10 +6,6 @@ $color-card-border: #e5e7eb;
 $color-teal-50: #f0fdfa;
 $color-danger: #d92d20;
 
-// Booking Details / 預約資料填寫.
-// Phase 1: render the complete field union for all five booking sources.
-// data-booking-source metadata is retained for later backend visibility control,
-// but must NOT hide any group in the current verification state.
 .booking-details-hero {
     display: flex;
     align-items: center;

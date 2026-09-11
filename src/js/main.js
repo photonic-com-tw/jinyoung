@@ -212,6 +212,167 @@ document.querySelectorAll('[data-faq-accordion-trigger]').forEach((trigger) => {
   });
 });
 
+const NEWS_PAGE_TRANSITION_DURATION = 380;
+const newsReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+// Phase-1 static slicing: the two page panels already exist in the HTML
+// (see news.html) — this only toggles which one is visible and animates
+// the handoff. No card markup is generated or fetched here.
+function initNewsPagination() {
+  const viewport = document.querySelector('[data-news-viewport]');
+  const pagination = document.querySelector('[data-news-pagination]');
+  if (!viewport || !pagination) return;
+
+  const panels = Array.prototype.slice.call(viewport.querySelectorAll('[data-news-panel]'));
+  if (panels.length < 2) return;
+
+  function getPanel(page) {
+    return panels.filter((panel) => panel.getAttribute('data-news-panel') === String(page))[0];
+  }
+
+  const initialPanel = panels.filter((panel) => !panel.hidden)[0] || panels[0];
+  let currentPage = Number.parseInt(initialPanel.getAttribute('data-news-panel'), 10);
+  let isAnimating = false;
+
+  // Measures a panel's natural height even while it's [hidden], so the
+  // viewport can reserve space for the tallest panel up front. Without
+  // this, switching to a page with fewer cards (e.g. page 2's 2 cards vs
+  // page 1's 6) would collapse the viewport once the animation finished
+  // and yank the pagination/CTA band upward.
+  function measureNaturalHeight(panel) {
+    if (!panel.hidden) return panel.getBoundingClientRect().height;
+
+    panel.hidden = false;
+    panel.style.visibility = 'hidden';
+    panel.style.position = 'absolute';
+    const height = panel.getBoundingClientRect().height;
+    panel.style.visibility = '';
+    panel.style.position = '';
+    panel.hidden = true;
+    return height;
+  }
+
+  function syncReservedHeight() {
+    const tallest = Math.max.apply(null, panels.map(measureNaturalHeight));
+    viewport.style.minHeight = `${tallest}px`;
+  }
+
+  syncReservedHeight();
+
+  // Row/column counts change at each breakpoint, so the tallest panel's
+  // height must be re-measured after a resize rather than computed once.
+  let reservedHeightResizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(reservedHeightResizeTimer);
+    reservedHeightResizeTimer = setTimeout(syncReservedHeight, 150);
+  });
+
+  function setPaginationState() {
+    pagination.querySelectorAll('[data-news-page]').forEach((button) => {
+      const isCurrent = button.getAttribute('data-news-page') === String(currentPage);
+      button.classList.toggle('is-active', isCurrent);
+      if (isCurrent) {
+        button.setAttribute('aria-current', 'page');
+      } else {
+        button.removeAttribute('aria-current');
+      }
+    });
+
+    const prevButton = pagination.querySelector('[data-news-page-prev]');
+    const nextButton = pagination.querySelector('[data-news-page-next]');
+    if (prevButton) prevButton.classList.toggle('is-disabled', currentPage <= 1);
+    if (nextButton) nextButton.classList.toggle('is-disabled', currentPage >= panels.length);
+  }
+
+  function goToPage(targetPage) {
+    if (isAnimating) return;
+
+    const clampedPage = Math.min(Math.max(targetPage, 1), panels.length);
+    if (clampedPage === currentPage) return;
+
+    const outgoing = getPanel(currentPage);
+    const incoming = getPanel(clampedPage);
+    if (!outgoing || !incoming) return;
+
+    const direction = clampedPage > currentPage ? 'forward' : 'backward';
+
+    if (newsReducedMotion.matches) {
+      outgoing.hidden = true;
+      incoming.hidden = false;
+      currentPage = clampedPage;
+      setPaginationState();
+      return;
+    }
+
+    isAnimating = true;
+
+    const viewportHeight = outgoing.offsetHeight;
+    viewport.style.height = `${viewportHeight}px`;
+    viewport.classList.add('is-animating');
+
+    incoming.hidden = false;
+    incoming.classList.add(direction === 'forward' ? 'news-grid--pos-right' : 'news-grid--pos-left');
+    outgoing.classList.add('news-grid--pos-center');
+
+    viewport.style.height = `${Math.max(viewportHeight, incoming.offsetHeight)}px`;
+
+    // Force a reflow so the entering panel's off-screen position is
+    // committed before switching to the target transforms — otherwise both
+    // changes would be batched into a single paint and no transition would
+    // play.
+    void incoming.offsetWidth;
+
+    requestAnimationFrame(() => {
+      outgoing.classList.remove('news-grid--pos-center');
+      outgoing.classList.add(direction === 'forward' ? 'news-grid--pos-left' : 'news-grid--pos-right');
+      incoming.classList.remove('news-grid--pos-right', 'news-grid--pos-left');
+      incoming.classList.add('news-grid--pos-center');
+    });
+
+    const finishTransition = () => {
+      outgoing.removeEventListener('transitionend', onTransitionEnd);
+      clearTimeout(fallbackTimer);
+      outgoing.hidden = true;
+      outgoing.classList.remove('news-grid--pos-left', 'news-grid--pos-right', 'news-grid--pos-center');
+      incoming.classList.remove('news-grid--pos-center');
+      viewport.classList.remove('is-animating');
+      viewport.style.height = '';
+      currentPage = clampedPage;
+      isAnimating = false;
+      setPaginationState();
+    };
+
+    const onTransitionEnd = (event) => {
+      if (event.target === outgoing && event.propertyName === 'transform') {
+        finishTransition();
+      }
+    };
+
+    outgoing.addEventListener('transitionend', onTransitionEnd);
+    // Safety net in case transitionend never fires (e.g. tab backgrounded).
+    const fallbackTimer = setTimeout(finishTransition, NEWS_PAGE_TRANSITION_DURATION + 100);
+  }
+
+  pagination.addEventListener('click', (event) => {
+    const target = event.target.closest('[data-news-page], [data-news-page-prev], [data-news-page-next]');
+    if (!target || target.classList.contains('is-disabled')) return;
+
+    event.preventDefault();
+
+    if (target.hasAttribute('data-news-page-prev')) {
+      goToPage(currentPage - 1);
+    } else if (target.hasAttribute('data-news-page-next')) {
+      goToPage(currentPage + 1);
+    } else {
+      goToPage(Number.parseInt(target.getAttribute('data-news-page'), 10));
+    }
+  });
+
+  setPaginationState();
+}
+
+initNewsPagination();
+
 // Booking Details: reuse rental-detail native Constraint Validation (required /
 // type=email / type=tel). On valid submit, continue to booking-confirmation.
 // Future source toggling should hide via [hidden]/display:none and disable

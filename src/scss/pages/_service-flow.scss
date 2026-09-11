@@ -8,9 +8,6 @@ $color-note-text: #7e2a0c;
 $color-substep-bg: #fff7ed;
 $color-card-border: #e5e7eb;
 
-// Figma 服務流程 1315:1231 (Desktop) / 1379:13710 (Mobile)
-// Page-level gutters only — do not change global .container token.
-// Mobile: Figma px-24. Desktop: padding 0 so max-width 1200 ≈ Figma 120px side gutters at 1440.
 .service-flow {
     @include mobile {
         .container {

@@ -24,6 +24,8 @@ export default defineConfig({
         index: resolve(__dirname, 'src/pages/index.html'),
         about: resolve(__dirname, 'src/pages/about.html'),
         services: resolve(__dirname, 'src/pages/services.html'),
+        news: resolve(__dirname, 'src/pages/news.html'),
+        newsDetail: resolve(__dirname, 'src/pages/news-detail.html'),
         serviceFlow: resolve(__dirname, 'src/pages/service-flow.html'),
         faq: resolve(__dirname, 'src/pages/faq.html'),
         rentalAirport: resolve(__dirname, 'src/pages/rental-airport.html'),

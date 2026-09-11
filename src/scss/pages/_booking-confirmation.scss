@@ -6,11 +6,6 @@ $color-card-border: #e5e7eb;
 $color-teal-50: #f0fdfa;
 $color-danger: #d92d20;
 
-// Booking Confirmation / 預約確認 (Figma 1365:7935 desktop, 1380:17369 mobile).
-// Shared confirmation page for all five booking sources.
-// Phase 1: render the complete field union as read-only confirmation rows.
-// data-booking-source metadata is retained for later backend visibility control,
-// but must NOT hide any group in the current verification state.
 .booking-confirmation-hero {
     display: flex;
     align-items: center;

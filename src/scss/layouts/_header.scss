@@ -7,8 +7,6 @@
     z-index: 100;
 }
 
-// Edge-to-edge header; CTA flush to top/right, rounded bottom-left only.
-// Figma Header 1322:2635 — height 56px
 .site-header-inner {
     @include flex(center, flex-start);
     gap: 40px;
