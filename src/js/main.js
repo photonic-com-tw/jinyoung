@@ -373,6 +373,162 @@ function initNewsPagination() {
 
 initNewsPagination();
 
+const TRIP_LIST_PAGE_SIZE = 9;
+const TRIP_HEADING_BY_REGION = {
+  all: '全部景點推薦',
+  north: '北部景點推薦',
+  central: '中部景點推薦',
+  south: '南部景點推薦',
+  east: '東部景點推薦',
+};
+
+// Recommended trips list: filter existing static cards by region tab and
+// paginate「全部」at 9 items / page. No card markup is generated here.
+function initRecommendedTrips() {
+  const tabsRoot = document.querySelector('[data-trip-tabs]');
+  if (!tabsRoot) return;
+
+  const grid = document.querySelector('[data-trip-grid]');
+  const pagination = document.querySelector('[data-trip-pagination]');
+  const heading = document.querySelector('[data-trip-heading]');
+  if (!grid || !pagination) return;
+
+  const cards = Array.prototype.slice.call(grid.querySelectorAll('[data-trip-region]'));
+  const tabs = Array.prototype.slice.call(tabsRoot.querySelectorAll('[data-trip-tab]'));
+  if (!cards.length || !tabs.length) return;
+
+  let currentRegion = 'all';
+  let currentPage = 1;
+
+  const activeTab = tabs.filter((tab) => tab.classList.contains('is-active'))[0];
+  if (activeTab) {
+    currentRegion = activeTab.getAttribute('data-trip-tab') || 'all';
+  }
+
+  function getMatchingCards() {
+    if (currentRegion === 'all') return cards;
+    return cards.filter((card) => card.getAttribute('data-trip-region') === currentRegion);
+  }
+
+  function setTabState() {
+    tabs.forEach((tab) => {
+      const isActive = tab.getAttribute('data-trip-tab') === currentRegion;
+      tab.classList.toggle('is-active', isActive);
+      tab.setAttribute('aria-selected', String(isActive));
+    });
+  }
+
+  function setPaginationState(totalPages, needsPagination) {
+    if (!needsPagination) {
+      pagination.setAttribute('hidden', '');
+      return;
+    }
+
+    pagination.removeAttribute('hidden');
+
+    pagination.querySelectorAll('[data-trip-page]').forEach((button) => {
+      const page = Number.parseInt(button.getAttribute('data-trip-page'), 10);
+      if (!Number.isFinite(page)) return;
+
+      if (page > totalPages) {
+        button.setAttribute('hidden', '');
+        button.classList.remove('is-active');
+        button.removeAttribute('aria-current');
+        return;
+      }
+
+      button.removeAttribute('hidden');
+      const isCurrent = page === currentPage;
+      button.classList.toggle('is-active', isCurrent);
+      if (isCurrent) {
+        button.setAttribute('aria-current', 'page');
+      } else {
+        button.removeAttribute('aria-current');
+      }
+    });
+
+    const prevButton = pagination.querySelector('[data-trip-page-prev]');
+    const nextButton = pagination.querySelector('[data-trip-page-next]');
+    if (prevButton) prevButton.classList.toggle('is-disabled', currentPage <= 1);
+    if (nextButton) nextButton.classList.toggle('is-disabled', currentPage >= totalPages);
+  }
+
+  function render() {
+    const matching = getMatchingCards();
+    const needsPagination = currentRegion === 'all' && matching.length > TRIP_LIST_PAGE_SIZE;
+    const totalPages = needsPagination
+      ? Math.ceil(matching.length / TRIP_LIST_PAGE_SIZE)
+      : 1;
+
+    if (currentPage > totalPages) currentPage = 1;
+
+    const start = needsPagination ? (currentPage - 1) * TRIP_LIST_PAGE_SIZE : 0;
+    const end = needsPagination ? start + TRIP_LIST_PAGE_SIZE : matching.length;
+    const visible = matching.slice(start, end);
+
+    cards.forEach((card) => {
+      if (visible.indexOf(card) !== -1) {
+        card.removeAttribute('hidden');
+      } else {
+        card.setAttribute('hidden', '');
+      }
+    });
+
+    if (heading && TRIP_HEADING_BY_REGION[currentRegion]) {
+      heading.textContent = TRIP_HEADING_BY_REGION[currentRegion];
+    }
+
+    setTabState();
+    setPaginationState(totalPages, needsPagination);
+  }
+
+  tabsRoot.addEventListener('click', (event) => {
+    const tab = event.target.closest('[data-trip-tab]');
+    if (!tab || !tabsRoot.contains(tab)) return;
+
+    const region = tab.getAttribute('data-trip-tab');
+    if (!region || region === currentRegion) return;
+
+    currentRegion = region;
+    currentPage = 1;
+    render();
+  });
+
+  pagination.addEventListener('click', (event) => {
+    const target = event.target.closest(
+      '[data-trip-page], [data-trip-page-prev], [data-trip-page-next]',
+    );
+    if (!target || target.classList.contains('is-disabled') || target.hasAttribute('hidden')) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const matching = getMatchingCards();
+    const totalPages = Math.max(1, Math.ceil(matching.length / TRIP_LIST_PAGE_SIZE));
+    let nextPage = currentPage;
+
+    if (target.hasAttribute('data-trip-page-prev')) {
+      nextPage = currentPage - 1;
+    } else if (target.hasAttribute('data-trip-page-next')) {
+      nextPage = currentPage + 1;
+    } else {
+      nextPage = Number.parseInt(target.getAttribute('data-trip-page'), 10);
+    }
+
+    if (!Number.isFinite(nextPage)) return;
+    nextPage = Math.min(Math.max(nextPage, 1), totalPages);
+    if (nextPage === currentPage) return;
+
+    currentPage = nextPage;
+    render();
+  });
+
+  render();
+}
+
+initRecommendedTrips();
+
 // Booking Details: reuse rental-detail native Constraint Validation (required /
 // type=email / type=tel). On valid submit, continue to booking-confirmation.
 // Future source toggling should hide via [hidden]/display:none and disable

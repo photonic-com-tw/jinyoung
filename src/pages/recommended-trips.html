@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>推薦行程｜金永國際租賃有限公司</title>
+        {{> head-fonts }}
+    </head>
+    <body>
+        {{> header }}
+
+        <main class="trips">
+            <section class="trips-hero">
+                <img
+                    class="trips-hero-media"
+                    src="../assets/images/trips/trip-hero.jpg"
+                    alt=""
+                    width="1920"
+                    height="1279"
+                />
+                <div class="container trips-hero-inner">
+                    <div class="trips-hero-text">
+                        <h1>推薦行程</h1>
+                        <p>
+                            帶您發現台灣之美，從北到南、山林到海洋，每一刻都是驚喜。
+                        </p>
+                    </div>
+
+                    <div
+                        class="trip-tabs"
+                        role="tablist"
+                        aria-label="行程地區篩選"
+                        data-trip-tabs
+                    >
+                        <button
+                            type="button"
+                            class="trip-tab is-active"
+                            data-trip-tab="all"
+                            aria-selected="true"
+                        >
+                            全部
+                        </button>
+                        <button
+                            type="button"
+                            class="trip-tab"
+                            data-trip-tab="north"
+                            aria-selected="false"
+                        >
+                            北部
+                        </button>
+                        <button
+                            type="button"
+                            class="trip-tab"
+                            data-trip-tab="central"
+                            aria-selected="false"
+                        >
+                            中部
+                        </button>
+                        <button
+                            type="button"
+                            class="trip-tab"
+                            data-trip-tab="south"
+                            aria-selected="false"
+                        >
+                            南部
+                        </button>
+                        <button
+                            type="button"
+                            class="trip-tab"
+                            data-trip-tab="east"
+                            aria-selected="false"
+                        >
+                            東部
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="trips-breadcrumb">
+                <div class="container">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <ol class="breadcrumb-list">
+                            <li><a href="/pages/index.html">首頁</a></li>
+                            <li>行程方案</li>
+                            <li aria-current="page">推薦行程</li>
+                        </ol>
+                    </nav>
+                </div>
+            </section>
+
+            <section class="trips-list">
+                <div class="container">
+                    <h2 class="trip-heading" data-trip-heading>全部景點推薦</h2>
+
+                    <div class="trip-grid" data-trip-grid>
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="north"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-mountain-boardwalk.jpg"
+                                    alt="台北101觀景台"
+                                    loading="lazy"
+                                    width="800"
+                                    height="461"
+                                />
+                                <span class="trip-card-tag">台北</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">台北101觀景台</h3>
+                                <p class="trip-card-desc">
+                                    登高俯瞰大台北盆地，飽覽城市天際線與浪漫夜景。
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="central"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-miaoli.jpg"
+                                    alt="苗栗市旅遊"
+                                    loading="lazy"
+                                    width="800"
+                                    height="494"
+                                />
+                                <span class="trip-card-tag">苗栗</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">苗栗市旅遊</h3>
+                                <p class="trip-card-desc">
+                                    苗栗一日遊推薦 就是要跟別人玩不一樣的苗栗!
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="south"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-retro-factory.jpg"
+                                    alt="高雄駁二藝術特區"
+                                    loading="lazy"
+                                    width="800"
+                                    height="533"
+                                />
+                                <span class="trip-card-tag">高雄</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">
+                                    高雄駁二藝術特區
+                                </h3>
+                                <p class="trip-card-desc">
+                                    舊倉庫改造的藝術聚落，塗鴉裝置與海港風光交織。
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="east"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-canyon-water.jpg"
+                                    alt="花蓮太魯閣峽谷"
+                                    loading="lazy"
+                                    width="800"
+                                    height="494"
+                                />
+                                <span class="trip-card-tag">花蓮</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">花蓮太魯閣峽谷</h3>
+                                <p class="trip-card-desc">
+                                    鬼斧神工的峽谷地形，健行步道盡覽大理石峭壁奇景。
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="north"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-heritage-lane.jpg"
+                                    alt="九份老街散策"
+                                    loading="lazy"
+                                    width="800"
+                                    height="494"
+                                />
+                                <span class="trip-card-tag">新北</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">九份老街散策</h3>
+                                <p class="trip-card-desc">
+                                    山城老街尋味懷舊風情，坑道美食與海景步道一次滿足。
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="central"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-taichung-rinan-station.jpg"
+                                    alt="台中大甲日南車站"
+                                    loading="lazy"
+                                    width="800"
+                                    height="534"
+                                />
+                                <span class="trip-card-tag">台中</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">
+                                    台中大甲日南車站
+                                </h3>
+                                <p class="trip-card-desc">
+                                    日南車站位於台中市大甲區，在鐵道迷眼中…
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="south"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-canyon-water.jpg"
+                                    alt="墾丁南灣戲水行"
+                                    loading="lazy"
+                                    width="800"
+                                    height="494"
+                                />
+                                <span class="trip-card-tag">屏東</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">墾丁南灣戲水行</h3>
+                                <p class="trip-card-desc">
+                                    台灣最南端的陽光沙灘，衝浪、浮潛與夕陽美景一次擁有。
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="east"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-mountain-boardwalk.jpg"
+                                    alt="台東鹿野高台"
+                                    loading="lazy"
+                                    width="800"
+                                    height="461"
+                                />
+                                <span class="trip-card-tag">台東</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">台東鹿野高台</h3>
+                                <p class="trip-card-desc">
+                                    熱氣球與滑翔傘勝地，居高臨下俯瞰縱谷茶園風光。
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="central"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-taichung-jenlan-temple.jpg"
+                                    alt="台中大甲鎮瀾宮"
+                                    loading="lazy"
+                                    width="800"
+                                    height="533"
+                                />
+                                <span class="trip-card-tag">台中</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">台中大甲鎮瀾宮</h3>
+                                <p class="trip-card-desc">
+                                    大甲鎮瀾宮，俗稱大甲媽祖廟，是一座位在…
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a
+                            class="trip-card"
+                            href="/pages/booking-entry.html"
+                            data-trip-region="north"
+                        >
+                            <div class="trip-card-media">
+                                <img
+                                    src="../assets/images/trips/trip-scenic-lake.jpg"
+                                    alt="淡水漁人碼頭"
+                                    loading="lazy"
+                                    width="800"
+                                    height="401"
+                                />
+                                <span class="trip-card-tag">新北</span>
+                            </div>
+                            <div class="trip-card-body">
+                                <h3 class="trip-card-title">淡水漁人碼頭</h3>
+                                <p class="trip-card-desc">
+                                    夕陽餘暉灑落情人橋與港灣，浪漫氣氛的最佳寫照。
+                                </p>
+                                <div class="trip-card-price-row">
+                                    <p class="trip-card-price">$4,700</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <nav
+                        class="trip-pagination"
+                        data-trip-pagination
+                        aria-label="推薦行程分頁"
+                    >
+                        <a
+                            href="#"
+                            class="trip-page-arrow is-disabled"
+                            data-trip-page-prev
+                            aria-label="上一頁"
+                            >←</a
+                        >
+                        <a
+                            href="#"
+                            class="trip-page is-active"
+                            data-trip-page="1"
+                            aria-current="page"
+                            aria-label="第 1 頁"
+                            >1</a
+                        >
+                        <a
+                            href="#"
+                            class="trip-page"
+                            data-trip-page="2"
+                            aria-label="第 2 頁"
+                            >2</a
+                        >
+                        <a
+                            href="#"
+                            class="trip-page-arrow"
+                            data-trip-page-next
+                            aria-label="下一頁"
+                            >→</a
+                        >
+                    </nav>
+                </div>
+            </section>
+        </main>
+
+        {{> footer }}
+
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>

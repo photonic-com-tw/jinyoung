@@ -26,6 +26,8 @@ export default defineConfig({
         services: resolve(__dirname, 'src/pages/services.html'),
         news: resolve(__dirname, 'src/pages/news.html'),
         newsDetail: resolve(__dirname, 'src/pages/news-detail.html'),
+        recommendedTrips: resolve(__dirname, 'src/pages/recommended-trips.html'),
+        freeTrip: resolve(__dirname, 'src/pages/free-trip.html'),
         serviceFlow: resolve(__dirname, 'src/pages/service-flow.html'),
         faq: resolve(__dirname, 'src/pages/faq.html'),
         rentalAirport: resolve(__dirname, 'src/pages/rental-airport.html'),

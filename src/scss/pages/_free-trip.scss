@@ -1,0 +1,219 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+
+// Figma 1326:5476 (desktop) / 1379:12520 (mobile) — 自由行 hero: full-bleed
+// image, 40% dark overlay, centered title/subtitle. No tab bar, unlike
+// .trips-hero.
+.free-trip-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 480px;
+    overflow: hidden;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+}
+
+.free-trip-hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.free-trip-hero-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.free-trip-hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    max-width: 800px;
+    margin-inline: auto;
+
+    h1 {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 1.8px;
+        color: v.$color-white;
+        margin: 0;
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+    }
+}
+
+.free-trip-breadcrumb {
+    padding-block: 32px;
+
+    .breadcrumb-list {
+        color: v.$color-heading-text;
+        line-height: 16px;
+
+        li:not(:last-child)::after {
+            color: v.$color-gray-text;
+        }
+
+        li[aria-current="page"] {
+            color: v.$color-teal-dark;
+        }
+
+        a:hover {
+            color: v.$color-teal;
+        }
+    }
+}
+
+// Shared heading pattern for the two content sections below the breadcrumb.
+.free-trip-project-heading,
+.free-trip-features-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    @include pad {
+        margin-bottom: 48px;
+    }
+
+    @include desktop {
+        margin-bottom: 48px;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 1.5px;
+        color: v.$color-teal;
+    }
+
+    p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.8px;
+        color: $color-muted;
+    }
+}
+
+// Figma "FeaturedTrips": section title centered, body copy left-aligned,
+// full-bleed feature image below with a fixed 1200:560 crop.
+.free-trip-project {
+    padding-block: 32px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        padding-block: 80px;
+    }
+
+    .free-trip-project-heading h2 {
+        text-align: center;
+    }
+}
+
+.free-trip-project-media {
+    aspect-ratio: 1200 / 560;
+    border-radius: 16px;
+    overflow: hidden;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+// Figma "Service Features": gray section, title left-aligned.
+.free-trip-features {
+    background: v.$color-gray-bg;
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 80px;
+    }
+
+    @include desktop {
+        padding-block: 80px;
+    }
+}
+
+.free-trip-feature-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include desktop {
+        flex-direction: row;
+        align-items: stretch;
+    }
+}
+
+.free-trip-feature-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 32px;
+    background: v.$color-white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+
+    @include desktop {
+        flex: 1 0 0;
+        min-width: 0;
+    }
+
+    img {
+        width: 32px;
+        height: 32px;
+    }
+
+    h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 1px;
+        color: v.$color-heading-text;
+    }
+
+    p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.8px;
+        color: $color-muted;
+    }
+}

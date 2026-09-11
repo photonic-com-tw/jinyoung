@@ -1,0 +1,313 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-heading-teal: #00786f;
+$color-muted: #6a7282;
+$color-tag-bg: #7e2a0c;
+$color-tab-active: #0b8b77;
+
+// Figma 1311:1246 (desktop) / 1379:12254 (mobile) — 推薦行程 hero: full-bleed
+// image, dark overlay, centered title/tabs. Structurally identical to
+// .services-hero, kept as its own page-scoped ruleset since 推薦行程 adds the
+// region tab bar underneath the hero copy.
+.trips-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 480px;
+    overflow: hidden;
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+}
+
+.trips-hero-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.trips-hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+.trips-hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    max-width: 800px;
+
+    h1 {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 1.8px;
+        color: v.$color-white;
+        margin: 0;
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0;
+    }
+}
+
+// Figma "Tabs" component — white pill, drop-shadow, 4px gap between tabs.
+.trip-tabs {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 8px;
+    background: v.$color-white;
+    border-radius: 16px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.trip-tab {
+    flex-shrink: 0;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-family: v.$font-family-base;
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-muted;
+    white-space: nowrap;
+
+    &.is-active {
+        background: $color-tab-active;
+        color: v.$color-white;
+    }
+
+    @include pad {
+        padding: 12px 24px;
+    }
+
+    @include desktop {
+        padding: 12px 24px;
+    }
+}
+
+.trips-breadcrumb {
+    padding-block: 32px;
+
+    .breadcrumb-list {
+        color: v.$color-heading-text;
+        line-height: 16px;
+
+        li:not(:last-child)::after {
+            color: v.$color-gray-text;
+        }
+
+        li[aria-current="page"] {
+            color: v.$color-teal-dark;
+        }
+
+        a:hover {
+            color: v.$color-teal;
+        }
+    }
+}
+
+.trips-list {
+    padding-block: 24px;
+
+    @include pad {
+        padding-block: 64px;
+    }
+
+    @include desktop {
+        padding-block: 64px;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+}
+
+.trip-heading {
+    margin: 0;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1.5px;
+    color: $color-heading-teal;
+}
+
+// Figma "Grid": 1 col mobile, 2 col pad, 3 col desktop, gap-24 both axes.
+.trip-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: 100%;
+
+    @include pad {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include desktop {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    // Tab / pagination JS toggles [hidden] on cards; grid must not leave gaps.
+    .trip-card[hidden] {
+        display: none;
+    }
+}
+
+.trip-card {
+    display: flex;
+    flex-direction: column;
+    background: v.$color-white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: inherit;
+    text-decoration: none;
+}
+
+.trip-card-media {
+    position: relative;
+    width: 100%;
+    height: 200px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.trip-card-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: $color-tag-bg;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    line-height: 1.2;
+    color: v.$color-white;
+}
+
+.trip-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+}
+
+.trip-card-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: v.$color-heading-text;
+}
+
+.trip-card-desc {
+    margin: 0;
+    height: 42px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.8px;
+    color: $color-muted;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.trip-card-price-row {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
+}
+
+.trip-card-price {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    color: $color-tag-bg;
+}
+
+// Figma "Page-bar": arrows have no border, numbered pages do, active page is
+// solid-filled. Kept separate from .news-pagination since that component
+// borders its arrows too — a small, deliberate visual difference here.
+.trip-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &[hidden] {
+        display: none;
+    }
+
+    a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        font-size: 16px;
+        line-height: 1;
+        text-decoration: none;
+        color: v.$color-teal;
+        background: v.$color-white;
+    }
+
+    a[hidden] {
+        display: none;
+    }
+
+    .trip-page {
+        border: 1px solid v.$color-teal;
+    }
+
+    .trip-page.is-active {
+        border-color: transparent;
+        background: v.$color-teal;
+        color: v.$color-white;
+    }
+
+    .is-disabled {
+        opacity: 0.45;
+        pointer-events: none;
+    }
+}
