@@ -30,6 +30,94 @@ document.querySelectorAll('[data-error-reload]').forEach((button) => {
   });
 });
 
+// Back-to-top: smooth scroll via JS so we do not rely on html scroll-behavior
+// (which also smooth-scrolls to #top on page refresh when the hash remains).
+document.querySelectorAll('a[href="#top"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (window.history.replaceState) {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
+  });
+});
+
+// Homepage hero: background fade carousel.
+// Slide 1 image already includes the van; slides 2–3 are scenery only.
+const HOME_HERO_AUTOPLAY_MS = 5000;
+
+function initHomeHeroCarousel() {
+  const root = document.querySelector('[data-home-hero-carousel]');
+  if (!root) return;
+
+  const slides = Array.prototype.slice.call(root.querySelectorAll('[data-home-hero-slide]'));
+  const dots = Array.prototype.slice.call(root.querySelectorAll('[data-home-hero-dot]'));
+  if (slides.length < 2) return;
+
+  let index = slides.findIndex((slide) => slide.classList.contains('is-active'));
+  if (index < 0) index = 0;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer = null;
+
+  function goTo(nextIndex) {
+    const target = ((nextIndex % slides.length) + slides.length) % slides.length;
+    if (target === index) return;
+
+    slides[index].classList.remove('is-active');
+    slides[target].classList.add('is-active');
+
+    if (dots[index]) {
+      dots[index].classList.remove('is-active');
+      dots[index].setAttribute('aria-selected', 'false');
+    }
+    if (dots[target]) {
+      dots[target].classList.add('is-active');
+      dots[target].setAttribute('aria-selected', 'true');
+    }
+
+    index = target;
+  }
+
+  function stopAutoplay() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    if (reducedMotion.matches) return;
+    timer = setInterval(() => {
+      goTo(index + 1);
+    }, HOME_HERO_AUTOPLAY_MS);
+  }
+
+  dots.forEach((dot, dotIndex) => {
+    dot.addEventListener('click', () => {
+      goTo(dotIndex);
+      startAutoplay();
+    });
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAutoplay();
+    else startAutoplay();
+  });
+
+  if (typeof reducedMotion.addEventListener === 'function') {
+    reducedMotion.addEventListener('change', startAutoplay);
+  } else if (typeof reducedMotion.addListener === 'function') {
+    reducedMotion.addListener(startAutoplay);
+  }
+
+  startAutoplay();
+}
+
+initHomeHeroCarousel();
+
 const TRIP_ACCORDION_DURATION = 220;
 
 // Height slide used by the outer trip-select panel and nested region/county
@@ -218,6 +306,22 @@ document.querySelectorAll('[data-faq-accordion-trigger]').forEach((trigger) => {
     animateFaqAccordion(panel, willExpand);
   });
 });
+
+// Homepage FAQ: Figma shows Q1 pre-opened only on the mobile (<=768px)
+// layout; desktop/pad start fully closed. Reuses the same accordion markup
+// and CSS as the trigger click handler above — this just sets the initial
+// state to match the breakpoint on load.
+const homeFaqDefaultTrigger = document.querySelector('[data-faq-default-open]');
+
+if (homeFaqDefaultTrigger && window.matchMedia('(max-width: 768px)').matches) {
+  const panelId = homeFaqDefaultTrigger.getAttribute('aria-controls');
+  const panel = panelId ? document.getElementById(panelId) : null;
+
+  if (panel) {
+    homeFaqDefaultTrigger.setAttribute('aria-expanded', 'true');
+    panel.removeAttribute('hidden');
+  }
+}
 
 const NEWS_PAGE_TRANSITION_DURATION = 380;
 const newsReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');

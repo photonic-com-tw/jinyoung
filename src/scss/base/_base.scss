@@ -1,7 +1,10 @@
 @use "variables" as v;
 
+// Do not set scroll-behavior: smooth on html.
+// Combined with URL hash (e.g. #top after 回到頂部), browsers re-run
+// smooth scroll-to-anchor on refresh and the motion often looks incomplete.
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
 }
 
 body {

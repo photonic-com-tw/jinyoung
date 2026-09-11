@@ -1,16 +1,751 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jinyong</title>
-    {{> head-fonts }}
-  </head>
-  <body>
-    <main class="container">
-      <h1>jinyong</h1>
-      {{> toolchain-status }}
-    </main>
-    <script type="module" src="/js/main.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>金永國際租賃有限公司｜專業包車・安心出行</title>
+        {{> head-fonts }}
+    </head>
+    <body class="page-home" id="top">
+        {{> header }}
+
+        <main class="home">
+            <section
+                class="home-hero"
+                data-home-hero-carousel
+                aria-roledescription="carousel"
+                aria-label="首頁主視覺"
+            >
+                <div class="home-hero-slides">
+                    <img
+                        class="home-hero-media is-active"
+                        src="../assets/images/home/hero-banner.jpg"
+                        alt="城市林蔭大道街景"
+                        width="1440"
+                        height="686"
+                        data-home-hero-slide
+                    />
+                    <img
+                        class="home-hero-media"
+                        src="../assets/images/home/hero-banner-2.jpg"
+                        alt="台灣旅遊風景"
+                        width="1536"
+                        height="672"
+                        data-home-hero-slide
+                    />
+                    <img
+                        class="home-hero-media"
+                        src="../assets/images/home/hero-banner-3.jpg"
+                        alt="豪華包車服務場景"
+                        width="1920"
+                        height="1080"
+                        data-home-hero-slide
+                    />
+                </div>
+
+                <div class="home-hero-panel">
+                    <div class="home-hero-title">
+                        <p>專業包車・安心出行</p>
+                        <p>您的專屬旅遊夥伴</p>
+                    </div>
+                    <p class="home-hero-desc">
+                        我們提供安全、舒適、貼心的包車服務，讓每一段旅程都成為美好回憶。
+                    </p>
+                    <a href="/pages/booking-selection.html" class="btn btn-cta">
+                        我要預約
+                        <img
+                            src="../assets/images/icon-hand.png"
+                            alt=""
+                            width="24"
+                            height="24"
+                        />
+                    </a>
+                </div>
+
+                <div
+                    class="home-hero-dots"
+                    role="tablist"
+                    aria-label="主視覺輪播"
+                >
+                    <button
+                        type="button"
+                        class="is-active"
+                        role="tab"
+                        aria-selected="true"
+                        aria-label="第 1 張"
+                        data-home-hero-dot
+                    ></button>
+                    <button
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-label="第 2 張"
+                        data-home-hero-dot
+                    ></button>
+                    <button
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        aria-label="第 3 張"
+                        data-home-hero-dot
+                    ></button>
+                </div>
+            </section>
+
+            <div class="home-social" aria-label="社群與返回頂部">
+                <span
+                    class="home-social-item"
+                    role="img"
+                    aria-label="Facebook（官方連結待提供）"
+                >
+                    <img
+                        src="../assets/images/home/icon-social-facebook.svg"
+                        alt=""
+                        width="30"
+                        height="30"
+                    />
+                </span>
+                <span
+                    class="home-social-item"
+                    role="img"
+                    aria-label="LINE（官方連結待提供）"
+                >
+                    <img
+                        src="../assets/images/home/icon-social-line.svg"
+                        alt=""
+                        width="29"
+                        height="28"
+                    />
+                </span>
+                <a href="#top" class="home-social-item" aria-label="回到頂部">
+                    <img
+                        src="../assets/images/home/icon-back-to-top.svg"
+                        alt=""
+                        width="30"
+                        height="30"
+                    />
+                </a>
+            </div>
+
+            <section class="home-services">
+                <div class="home-services-bg" aria-hidden="true"></div>
+                <div class="container home-section-inner">
+                    <div class="home-section-head">
+                        <div class="home-section-title">
+                            <h2>專屬服務項目</h2>
+                            <p>
+                                我們提供多元化的包車服務，滿足您不同場合的出行需求，每一位司機均經過嚴格篩選，讓您安心乘坐。
+                            </p>
+                        </div>
+                        <a href="/pages/services.html" class="btn-more"
+                            >查看更多</a
+                        >
+                    </div>
+
+                    <div class="home-card-grid home-card-grid--services">
+                        <a class="home-card" href="/pages/rental-airport.html">
+                            <div class="home-card-media">
+                                <img
+                                    src="../assets/images/service-airport.jpg"
+                                    alt="機場接送"
+                                    width="266"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-card-body">
+                                <h3>機場接送</h3>
+                                <p class="home-card-desc">
+                                    即時掌握航班動態並準時接送，讓您的機場往返旅程更安心流暢。
+                                </p>
+                                <p class="home-card-suit">
+                                    •適合：商務旅客、家庭出遊、長輩出行
+                                </p>
+                                <p class="home-card-price">$4,700起</p>
+                            </div>
+                        </a>
+                        <a class="home-card" href="/pages/rental-charter.html">
+                            <div class="home-card-media">
+                                <img
+                                    src="../assets/images/service-charter.jpg"
+                                    alt="商務包車"
+                                    width="266"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-card-body">
+                                <h3>商務包車</h3>
+                                <p class="home-card-desc">
+                                    滿足您各種重要的商務行程，提供最高規格接送，展現專業體面。
+                                </p>
+                                <p class="home-card-suit">
+                                    •適合：企業主管、商務會議、客戶接待
+                                </p>
+                                <p class="home-card-price">$4,700起</p>
+                            </div>
+                        </a>
+                        <a
+                            class="home-card"
+                            href="/pages/rental-self-drive.html"
+                        >
+                            <div class="home-card-media">
+                                <img
+                                    src="../assets/images/service-fleet.jpg"
+                                    alt="車種介紹"
+                                    width="266"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-card-body">
+                                <h3>車種介紹</h3>
+                                <p class="home-card-desc">
+                                    備有轎車、商務車與多元廂型車，能依您的人數與需求靈活選配。
+                                </p>
+                                <p class="home-card-suit">
+                                    •適合：個人、小團體、大型家庭旅遊
+                                </p>
+                                <p class="home-card-price">$4,700起</p>
+                            </div>
+                        </a>
+                        <a class="home-card" href="/pages/rental-longcare.html">
+                            <div class="home-card-media">
+                                <img
+                                    src="../assets/images/service-accessible.jpg"
+                                    alt="長照服務"
+                                    width="266"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-card-body">
+                                <h3>長照服務</h3>
+                                <p class="home-card-desc">
+                                    專為長輩與行動不便者的設計，配備無障礙設施，打造溫馨乘車。
+                                </p>
+                                <p class="home-card-suit">
+                                    •適合：長輩就醫、復健接送、輪椅使用者
+                                </p>
+                                <p class="home-card-price">$4,700起</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <div class="home-scroll-band" aria-hidden="true">
+                <div class="home-scroll-track">
+                    <img
+                        src="../assets/images/home/scroll-skyline.svg"
+                        alt=""
+                        width="1444"
+                        height="200"
+                    />
+                    <img
+                        src="../assets/images/home/scroll-skyline.svg"
+                        alt=""
+                        width="1444"
+                        height="200"
+                    />
+                    <img
+                        src="../assets/images/home/scroll-skyline.svg"
+                        alt=""
+                        width="1444"
+                        height="200"
+                    />
+                </div>
+            </div>
+
+            <section class="home-trips">
+                <div class="container home-section-inner">
+                    <div class="home-section-head">
+                        <div class="home-section-title">
+                            <h2>行程方案精選</h2>
+                            <p>
+                                從自由規劃到精選推薦，我們為您打造最適合的台灣旅遊體驗，深入探索各地特色景點。
+                            </p>
+                        </div>
+                        <a href="/pages/recommended-trips.html" class="btn-more"
+                            >查看更多</a
+                        >
+                    </div>
+
+                    <div class="home-card-grid home-card-grid--trips">
+                        <a class="home-card" href="/pages/booking-entry.html">
+                            <div class="home-card-media">
+                                <img
+                                    src="../assets/images/home/trip-nantou.jpg"
+                                    alt="南投包車旅遊"
+                                    width="389"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-card-body">
+                                <h3>南投包車旅遊</h3>
+                                <p class="home-card-price">$4,700起</p>
+                            </div>
+                        </a>
+                        <a class="home-card" href="/pages/booking-entry.html">
+                            <div class="home-card-media">
+                                <img
+                                    src="../assets/images/home/trip-keelung.jpg"
+                                    alt="基隆包車旅遊"
+                                    width="389"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-card-body">
+                                <h3>基隆包車旅遊</h3>
+                                <p class="home-card-price">$4,700起</p>
+                            </div>
+                        </a>
+                        <a class="home-card" href="/pages/booking-entry.html">
+                            <div class="home-card-media">
+                                <img
+                                    src="../assets/images/home/trip-new-taipei.jpg"
+                                    alt="新北包車旅遊"
+                                    width="389"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-card-body">
+                                <h3>新北包車旅遊</h3>
+                                <p class="home-card-price">$4,700起</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <div class="home-path home-path--1" aria-hidden="true">
+                <img
+                    src="../assets/images/home/path-line-1.png"
+                    alt=""
+                    class="home-path-line"
+                />
+                <img
+                    src="../assets/images/home/path-pin.png"
+                    alt=""
+                    class="home-path-pin"
+                />
+            </div>
+
+            <section class="home-process">
+                <div class="container home-process-inner">
+                    <picture>
+                        <source
+                            media="(max-width: 767px)"
+                            srcset="../assets/images/home/process-bg-mobile.jpg"
+                        />
+                        <img
+                            src="../assets/images/home/process-bg.jpg"
+                            alt="長照接送人員協助長輩上車"
+                            class="home-process-media"
+                        />
+                    </picture>
+
+                    <div class="home-process-content">
+                        <div class="home-section-title">
+                            <h2>客製服務流程</h2>
+                            <p>
+                                從詢問到完成服務，我們提供清晰透明的預約流程，讓您輕鬆完成每一個步驟，安心出行。
+                            </p>
+                        </div>
+
+                        <div class="home-process-steps">
+                            <div class="home-process-step">
+                                <img
+                                    src="../assets/images/home/icon-step-1.svg"
+                                    alt=""
+                                    width="64"
+                                    height="64"
+                                />
+                                <p>1.選擇服務</p>
+                            </div>
+                            <div class="home-process-step">
+                                <img
+                                    src="../assets/images/home/icon-step-2.svg"
+                                    alt=""
+                                    width="64"
+                                    height="64"
+                                />
+                                <p>2.填寫需求</p>
+                            </div>
+                            <div class="home-process-step">
+                                <img
+                                    src="../assets/images/home/icon-step-3.svg"
+                                    alt=""
+                                    width="63"
+                                    height="64"
+                                />
+                                <p>3.專人確認</p>
+                            </div>
+                            <div class="home-process-step">
+                                <img
+                                    src="../assets/images/home/icon-step-4.svg"
+                                    alt=""
+                                    width="63"
+                                    height="64"
+                                />
+                                <p>4.確認報價</p>
+                            </div>
+                            <div class="home-process-step">
+                                <img
+                                    src="../assets/images/home/icon-step-5.svg"
+                                    alt=""
+                                    width="62"
+                                    height="64"
+                                />
+                                <p>5.完成預訂</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="home-faq">
+                <div class="container home-section-inner">
+                    <div class="home-section-head">
+                        <div class="home-section-title">
+                            <h2>常見問題 FAQ</h2>
+                            <p>
+                                以下整理了旅客最常詢問的問題，希望能幫助您更快速地了解我們的服務內容。
+                            </p>
+                        </div>
+                        <a href="/pages/faq.html" class="btn-more">查看更多</a>
+                    </div>
+
+                    <div class="home-faq-list" data-faq-accordion>
+                        <div class="home-faq-item">
+                            <button
+                                type="button"
+                                class="home-faq-trigger"
+                                id="home-faq-trigger-1"
+                                aria-expanded="false"
+                                aria-controls="home-faq-panel-1"
+                                data-faq-accordion-trigger
+                                data-faq-default-open
+                            >
+                                <span class="home-faq-index">Q1</span>
+                                <span class="home-faq-question"
+                                    >金永包車旅遊網</span
+                                >
+                                <img
+                                    class="home-faq-icon-plus"
+                                    src="../assets/images/home/icon-faq-plus-white.svg"
+                                    alt=""
+                                    width="24"
+                                    height="24"
+                                />
+                                <img
+                                    class="home-faq-icon-minus"
+                                    src="../assets/images/home/icon-faq-minus-white.svg"
+                                    alt=""
+                                    width="24"
+                                    height="24"
+                                />
+                            </button>
+                            <div
+                                class="home-faq-panel"
+                                id="home-faq-panel-1"
+                                role="region"
+                                aria-labelledby="home-faq-trigger-1"
+                                data-faq-accordion-panel
+                                hidden
+                            >
+                                <div class="home-faq-panel-body">
+                                    <p>
+                                        金永包車旅遊網提供全台包車旅遊、機場接送、長照接送與客製化行程規劃服務，涵蓋台北、新北、基隆、宜蘭、桃園、新竹、苗栗、台中、南投、花蓮、台南、高雄等主要地區。
+                                    </p>
+                                    <p>
+                                        無論您需要車站、港口、飯店或機場接送，我們都能依需求安排合適車型與司機，協助您輕鬆完成一趟安心舒適的台灣旅程。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="home-faq-item">
+                            <button
+                                type="button"
+                                class="home-faq-trigger"
+                                id="home-faq-trigger-2"
+                                aria-expanded="false"
+                                aria-controls="home-faq-panel-2"
+                                data-faq-accordion-trigger
+                            >
+                                <span class="home-faq-index">Q2</span>
+                                <span class="home-faq-question"
+                                    >包車旅遊有哪些重點？如何選擇優質的包車旅遊</span
+                                >
+                                <img
+                                    class="home-faq-icon-plus"
+                                    src="../assets/images/home/icon-faq-plus-white.svg"
+                                    alt=""
+                                    width="24"
+                                    height="24"
+                                />
+                                <img
+                                    class="home-faq-icon-minus"
+                                    src="../assets/images/home/icon-faq-minus-white.svg"
+                                    alt=""
+                                    width="24"
+                                    height="24"
+                                />
+                            </button>
+                            <div
+                                class="home-faq-panel"
+                                id="home-faq-panel-2"
+                                role="region"
+                                aria-labelledby="home-faq-trigger-2"
+                                data-faq-accordion-panel
+                                hidden
+                            >
+                                <div class="home-faq-panel-body">
+                                    <p>
+                                        選擇包車旅遊時，建議優先確認車況、保險內容、司機服務經驗，以及是否能依人數與行李量提供合適車型。行程彈性、準時接送與清楚報價，也是優質服務的重要指標。
+                                    </p>
+                                    <p>
+                                        金永會先了解您的旅遊目的與時間安排，再協助規劃路線與休息節奏，讓行程既有效率又舒適。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="home-faq-item">
+                            <button
+                                type="button"
+                                class="home-faq-trigger"
+                                id="home-faq-trigger-3"
+                                aria-expanded="false"
+                                aria-controls="home-faq-panel-3"
+                                data-faq-accordion-trigger
+                            >
+                                <span class="home-faq-index">Q3</span>
+                                <span class="home-faq-question"
+                                    >那麼多家包車旅遊公司，每一家司機都有導遊執照嗎?對人數多使用九人座車也一樣有保險嗎??</span
+                                >
+                                <img
+                                    class="home-faq-icon-plus"
+                                    src="../assets/images/home/icon-faq-plus-white.svg"
+                                    alt=""
+                                    width="24"
+                                    height="24"
+                                />
+                                <img
+                                    class="home-faq-icon-minus"
+                                    src="../assets/images/home/icon-faq-minus-white.svg"
+                                    alt=""
+                                    width="24"
+                                    height="24"
+                                />
+                            </button>
+                            <div
+                                class="home-faq-panel"
+                                id="home-faq-panel-3"
+                                role="region"
+                                aria-labelledby="home-faq-trigger-3"
+                                data-faq-accordion-panel
+                                hidden
+                            >
+                                <div class="home-faq-panel-body">
+                                    <p>
+                                        金永配合的司機均具備合法執業資格與豐富帶團經驗，並依行程性質安排熟悉路線的專人服務。若您有導覽需求，也可於預約時提前告知，我們會協助安排合適方案。
+                                    </p>
+                                    <p>
+                                        九人座等多人車型同樣依法投保，相關保險內容可於預約確認時向客服詢問，確保旅途中的保障完整。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="home-faq-item">
+                            <button
+                                type="button"
+                                class="home-faq-trigger"
+                                id="home-faq-trigger-4"
+                                aria-expanded="false"
+                                aria-controls="home-faq-panel-4"
+                                data-faq-accordion-trigger
+                            >
+                                <span class="home-faq-index">Q4</span>
+                                <span class="home-faq-question"
+                                    >包車司機對於景點了解程度？</span
+                                >
+                                <img
+                                    class="home-faq-icon-plus"
+                                    src="../assets/images/home/icon-faq-plus-white.svg"
+                                    alt=""
+                                    width="24"
+                                    height="24"
+                                />
+                                <img
+                                    class="home-faq-icon-minus"
+                                    src="../assets/images/home/icon-faq-minus-white.svg"
+                                    alt=""
+                                    width="24"
+                                    height="24"
+                                />
+                            </button>
+                            <div
+                                class="home-faq-panel"
+                                id="home-faq-panel-4"
+                                role="region"
+                                aria-labelledby="home-faq-trigger-4"
+                                data-faq-accordion-panel
+                                hidden
+                            >
+                                <div class="home-faq-panel-body">
+                                    <p>
+                                        我們的司機多具備各地熱門景點與交通動線經驗，能依路況與開放時間建議最佳抵達與停留方式，協助您減少排隊與塞車時間。
+                                    </p>
+                                    <p>
+                                        若您想安排特色美食、隱藏景點或親子友善路線，也可事先告知需求，我們會盡量配合調整行程。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="home-path home-path--2" aria-hidden="true">
+                <img
+                    src="../assets/images/home/path-line-2.png"
+                    alt=""
+                    class="home-path-line"
+                />
+                <img
+                    src="../assets/images/home/path-pin-2.png"
+                    alt=""
+                    class="home-path-pin"
+                />
+            </div>
+
+            <section class="home-news">
+                <div class="container home-section-inner">
+                    <div class="home-section-head">
+                        <div class="home-section-title">
+                            <h2>最新消息</h2>
+                            <p>
+                                掌握最新旅遊資訊、活動公告與服務更新，讓您的每次出行都能獲得最即時的資訊。
+                            </p>
+                        </div>
+                        <a href="/pages/news.html" class="btn-more">查看更多</a>
+                    </div>
+
+                    <div class="home-news-grid">
+                        <a
+                            class="home-news-card"
+                            href="/pages/news-detail.html"
+                        >
+                            <div class="home-news-media">
+                                <img
+                                    src="../assets/images/news/news-spring-flower-card.jpg"
+                                    alt="春季賞花包車行程宣傳圖片"
+                                    loading="lazy"
+                                    width="389"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-news-body">
+                                <h3>2025 春季賞花包車行程正式上線</h3>
+                                <p class="home-news-date">2025年03月15日</p>
+                                <p class="home-news-excerpt">
+                                    春暖花開，阿里山、武陵農場、拉拉山等知名賞花景點包車行程全面開放預約。把握春季限定美景，立即規劃您的賞花之旅，享受早鳥優惠價格。
+                                </p>
+                            </div>
+                        </a>
+                        <a
+                            class="home-news-card"
+                            href="/pages/news-detail.html"
+                        >
+                            <div class="home-news-media">
+                                <img
+                                    src="../assets/images/news/news-accessible-fleet-card.jpg"
+                                    alt="長照無障礙車隊升級示意圖"
+                                    loading="lazy"
+                                    width="389"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-news-body">
+                                <h3>
+                                    長照無障礙車隊全面升級，新增電動輪椅固定設備
+                                </h3>
+                                <p class="home-news-date">2025年02月28日</p>
+                                <p class="home-news-excerpt">
+                                    為提供長輩與行動不便旅客更安全舒適的乘車體驗，我們的長照車隊完成全面升級，新增電動輪椅固定裝置與緊急呼叫系統，讓每一趟出行更有保障。
+                                </p>
+                            </div>
+                        </a>
+                        <a
+                            class="home-news-card"
+                            href="/pages/news-detail.html"
+                        >
+                            <div class="home-news-media">
+                                <img
+                                    src="../assets/images/news/news-lantern-festival-card.jpg"
+                                    alt="元宵節天燈節包車專案示意圖"
+                                    loading="lazy"
+                                    width="389"
+                                    height="200"
+                                />
+                            </div>
+                            <div class="home-news-body">
+                                <h3>元宵節天燈節包車專案，限量名額開放中</h3>
+                                <p class="home-news-date">2025年01月20日</p>
+                                <p class="home-news-excerpt">
+                                    平溪天燈節即將登場，每年吸引大批旅客朝聖。今年我們特別規劃天燈節專屬包車方案，含接送、停車安排與最佳觀賞位置導引，名額有限，請盡早預約。
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <div class="home-shape" aria-hidden="true">
+                <img src="../assets/images/home/shape-transition.svg" alt="" />
+            </div>
+
+            <section class="home-cta">
+                <div class="container home-cta-inner">
+                    <div class="home-section-title home-section-title--center">
+                        <h2>準備好出發了嗎？</h2>
+                        <p>
+                            無論是機場接送、商務出行，還是深度旅遊，我們隨時為您服務。立即聯繫我們，讓專業團隊為您量身規劃最完美的出行方案。
+                        </p>
+                    </div>
+
+                    <div class="home-cta-grid">
+                        <a
+                            href="/pages/booking-selection.html"
+                            class="home-cta-card"
+                        >
+                            <h3>線上預約</h3>
+                            <p>
+                                填寫預約表單，24小時內專人回覆，快速確認您的行程需求。
+                            </p>
+                        </a>
+                        <div
+                            class="home-cta-card"
+                            role="group"
+                            aria-label="LINE 詢問（官方連結待提供）"
+                        >
+                            <h3>LINE 詢問</h3>
+                            <p>
+                                加入我們的LINE官方帳號，即時與客服人員溝通，獲得最快速的服務回應。
+                            </p>
+                        </div>
+                        <a href="tel:886229749738" class="home-cta-card">
+                            <h3>電話諮詢</h3>
+                            <p>
+                                直接來電與我們的服務專員通話，詳細說明您的需求，立即獲得專業建議。
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        {{> footer }}
+
+        <script type="module" src="/js/main.js"></script>
+    </body>
 </html>

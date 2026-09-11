@@ -14,10 +14,33 @@
     height: 56px;
 }
 
+.site-header-logo {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    width: 95px;
+    height: 40px;
+}
+
 .site-header-logo img {
     display: block;
+    width: 95px;
     height: 40px;
-    width: auto;
+}
+
+// Default (solid white header): black logo only.
+// Homepage hero overlay: white logo only.
+// Specificity must beat `.site-header-logo img { display: block }`.
+.site-header-logo img.site-header-logo-light {
+    display: none;
+}
+
+.page-home .site-header-logo img.site-header-logo-dark {
+    display: none;
+}
+
+.page-home .site-header-logo img.site-header-logo-light {
+    display: block;
 }
 
 .site-nav-list {
@@ -69,22 +92,7 @@
     display: block;
 }
 
-@include pad {
-    .site-nav-dropdown {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        min-width: 160px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-        z-index: 10;
-    }
-
-    .has-dropdown:hover .site-nav-dropdown {
-        display: block;
-    }
-}
-
+// Desktop only (≥1025): hover flyout. Pad/mobile use hamburger accordion instead.
 @include desktop {
     .site-nav-dropdown {
         position: absolute;
@@ -101,7 +109,7 @@
     }
 }
 
-// Desktop / pad (Figma 1633:15193 top): 我要預約 + hand icon, no hamburger
+// Desktop (≥1025): 我要預約 + hand icon. ≤1024 also shows hamburger (see below).
 .site-header-actions {
     @include flex(center, center);
     gap: 16px;
@@ -160,6 +168,31 @@
     height: 24px;
 }
 
+// Homepage hero overlay variant (Figma "Property 1=white"): header sits
+// transparent on top of the hero banner instead of the solid white bar used
+// on every other page. Scoped to .page-home so the shared header/JS stay
+// unchanged for completed pages.
+.page-home .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: transparent;
+}
+
+// Desktop horizontal nav sits on hero: white link text.
+// ≤1024 hamburger panel is white, so keep default dark nav text there.
+@include desktop {
+    .page-home .site-nav-list > li > a {
+        color: v.$color-white;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+        &:hover {
+            color: v.$color-mint;
+        }
+    }
+}
+
 .sr-only {
     position: absolute;
     width: 1px;
@@ -172,8 +205,8 @@
     border: 0;
 }
 
-// Mobile only (Figma 1633:15193 bottom): 我要預約 + hamburger, hide hand icon
-@include mobile {
+// ≤1024 (mobile + pad): hamburger menu. ≥1025 keeps desktop horizontal nav.
+@media (max-width: 1024px) {
     .site-nav {
         position: absolute;
         top: 100%;
