@@ -1,0 +1,311 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+$color-input-border: #cac8b9;
+$color-black: #000000;
+
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
+
+.order-search-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 240px;
+    background: v.$color-teal-dark;
+    padding-inline: 24px;
+
+    @include pad {
+        padding-inline: 120px;
+    }
+
+    @include desktop {
+        padding-inline: 120px;
+    }
+}
+
+.order-search-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    width: 100%;
+}
+
+.order-search-hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: v.$color-white;
+    letter-spacing: 1.8px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.order-search-hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Breadcrumb
+// ---------------------------------------------------------------------------
+
+.order-search-breadcrumb {
+    background: v.$color-white;
+    padding-inline: 24px;
+    padding-top: 24px;
+    padding-bottom: 12px;
+
+    @include pad {
+        padding-inline: 120px;
+        padding-top: 32px;
+        padding-bottom: 16px;
+    }
+
+    @include desktop {
+        padding-inline: 120px;
+        padding-top: 32px;
+        padding-bottom: 16px;
+    }
+
+    .breadcrumb-list {
+        color: $color-black;
+
+        li:not(:last-child)::after {
+            color: $color-black;
+        }
+
+        li[aria-current="page"] {
+            color: v.$color-teal-dark;
+        }
+
+        a:hover {
+            color: v.$color-teal;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Search Form
+// ---------------------------------------------------------------------------
+
+.order-search-form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-inline: 24px;
+    padding-top: 20px;
+    padding-bottom: 32px;
+
+    @include pad {
+        gap: 40px;
+        padding-inline: 120px;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+
+    @include desktop {
+        gap: 40px;
+        padding-inline: 120px;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+}
+
+.order-search-form-title {
+    width: 100%;
+    font-size: 24px;
+    font-weight: 700;
+    color: v.$color-teal;
+    letter-spacing: 1.2px;
+    line-height: 1.2;
+    margin: 0;
+    text-align: left;
+
+    @include pad {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+        text-align: center;
+    }
+
+    @include desktop {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+        text-align: center;
+    }
+}
+
+.order-search-form {
+    width: 100%;
+}
+
+.order-search-form-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    @include pad {
+        gap: 12px;
+    }
+
+    @include desktop {
+        gap: 12px;
+    }
+}
+
+.order-search-input {
+    flex: 1 0 0;
+    min-width: 0;
+    background: v.$color-white;
+    border: 1px solid $color-input-border;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    color: v.$color-heading-text;
+
+    &::placeholder {
+        color: $color-muted;
+    }
+
+    &:focus {
+        outline: 2px solid v.$color-teal;
+        outline-offset: 1px;
+    }
+
+    @include pad {
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+
+    @include desktop {
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+}
+
+.order-search-submit {
+    flex-shrink: 0;
+    background: v.$color-teal-dark;
+    color: v.$color-white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+        opacity: 0.85;
+    }
+
+    @include pad {
+        padding: 14px 32px;
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+
+    @include desktop {
+        padding: 14px 32px;
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Customer Service ("找不到您的訂單？聯繫客服")
+// ---------------------------------------------------------------------------
+
+.order-search-help-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-inline: 24px;
+    padding-top: 16px;
+    padding-bottom: 48px;
+
+    @include pad {
+        gap: 40px;
+        padding-inline: 120px;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+
+    @include desktop {
+        gap: 40px;
+        padding-inline: 120px;
+        padding-top: 40px;
+        padding-bottom: 80px;
+    }
+}
+
+.order-search-help-title {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    color: v.$color-teal;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+    text-align: left;
+
+    @include pad {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+        text-align: center;
+    }
+
+    @include desktop {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+        text-align: center;
+    }
+}
+
+.order-search-help-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: v.$color-white;
+    border: 1px solid v.$color-teal;
+    border-radius: 16px;
+    padding: 16px;
+
+    @include pad {
+        gap: 16px;
+    }
+
+    @include desktop {
+        gap: 16px;
+    }
+}
+
+.order-search-help-card-title {
+    margin: 0;
+    font-size: 20px;
+    color: $color-black;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.order-search-help-card-text {
+    margin: 0;
+    font-size: 16px;
+    color: $color-muted;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+}

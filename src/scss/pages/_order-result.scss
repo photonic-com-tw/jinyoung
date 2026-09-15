@@ -1,0 +1,674 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+$color-border: #e5e7eb;
+$color-input-border: #cac8b9;
+$color-teal-50: #f0fdfa;
+$color-black: #000000;
+$color-pending: #7e2a0c;
+
+// ---------------------------------------------------------------------------
+// Hero
+// ---------------------------------------------------------------------------
+
+.order-result-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 240px;
+    background: v.$color-teal-dark;
+    padding-inline: 24px;
+
+    @include pad {
+        padding-inline: 120px;
+    }
+
+    @include desktop {
+        padding-inline: 120px;
+    }
+}
+
+.order-result-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    width: 100%;
+}
+
+.order-result-hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: v.$color-white;
+    letter-spacing: 1.8px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.order-result-hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Breadcrumb
+// ---------------------------------------------------------------------------
+
+.order-result-breadcrumb {
+    background: v.$color-white;
+    padding-inline: 24px;
+    padding-top: 24px;
+    padding-bottom: 12px;
+
+    @include pad {
+        padding-inline: 120px;
+        padding-top: 32px;
+        padding-bottom: 16px;
+    }
+
+    @include desktop {
+        padding-inline: 120px;
+        padding-top: 32px;
+        padding-bottom: 16px;
+    }
+
+    .breadcrumb-list {
+        color: $color-black;
+
+        li:not(:last-child)::after {
+            color: $color-black;
+        }
+
+        li[aria-current="page"] {
+            color: v.$color-teal-dark;
+        }
+
+        a:hover {
+            color: v.$color-teal;
+        }
+    }
+}
+
+// Only the mobile design shows a middle "訂單搜尋" breadcrumb level; desktop
+// collapses straight from 首頁 to 訂單結果.
+.breadcrumb-list li.order-result-breadcrumb-mid {
+    display: none;
+
+    @include mobile {
+        display: flex;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Search Form
+// ---------------------------------------------------------------------------
+
+.order-result-form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-inline: 24px;
+    padding-top: 20px;
+    padding-bottom: 32px;
+
+    @include pad {
+        gap: 40px;
+        padding-inline: 120px;
+        padding-top: 40px;
+        padding-bottom: 48px;
+    }
+
+    @include desktop {
+        gap: 40px;
+        padding-inline: 120px;
+        padding-top: 40px;
+        padding-bottom: 48px;
+    }
+}
+
+.order-result-form-title {
+    width: 100%;
+    font-size: 24px;
+    font-weight: 700;
+    color: v.$color-teal;
+    letter-spacing: 1.2px;
+    line-height: 1.2;
+    margin: 0;
+    text-align: left;
+
+    @include pad {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+        text-align: center;
+    }
+
+    @include desktop {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+        text-align: center;
+    }
+}
+
+.order-result-form {
+    width: 100%;
+}
+
+.order-result-form-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    @include pad {
+        gap: 12px;
+    }
+
+    @include desktop {
+        gap: 12px;
+    }
+}
+
+.order-result-input {
+    flex: 1 0 0;
+    min-width: 0;
+    background: v.$color-white;
+    border: 1px solid $color-input-border;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    color: v.$color-heading-text;
+
+    &::placeholder {
+        color: $color-muted;
+    }
+
+    &:focus {
+        outline: 2px solid v.$color-teal;
+        outline-offset: 1px;
+    }
+
+    @include pad {
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+
+    @include desktop {
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+}
+
+.order-result-submit {
+    flex-shrink: 0;
+    background: v.$color-teal-dark;
+    color: v.$color-white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+        opacity: 0.85;
+    }
+
+    @include pad {
+        padding: 14px 32px;
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+
+    @include desktop {
+        padding: 14px 32px;
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Shared section title ("訂單狀態")
+// ---------------------------------------------------------------------------
+
+.order-result-section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: v.$color-teal;
+    letter-spacing: 1.2px;
+    line-height: 1.2;
+    margin: 0;
+    width: 100%;
+
+    @include pad {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+    }
+
+    @include desktop {
+        font-size: 30px;
+        letter-spacing: 1.5px;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Order Status
+// ---------------------------------------------------------------------------
+
+.order-result-status-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-inline: 24px;
+    padding-bottom: 32px;
+
+    @include pad {
+        gap: 24px;
+        padding-inline: 120px;
+        padding-bottom: 48px;
+    }
+
+    @include desktop {
+        gap: 24px;
+        padding-inline: 120px;
+        padding-bottom: 48px;
+    }
+}
+
+.order-result-status-table {
+    width: 100%;
+    background: v.$color-white;
+    border: 1px solid $color-border;
+    border-radius: 12px;
+    overflow: hidden;
+
+    .is-pending {
+        color: $color-pending;
+        font-weight: 700;
+    }
+
+    .is-muted {
+        color: $color-muted;
+        font-weight: 700;
+    }
+}
+
+.order-result-status-table--desktop {
+    display: none;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    text-align: center;
+
+    @include pad {
+        display: table;
+    }
+
+    @include desktop {
+        display: table;
+    }
+
+    thead {
+        background: $color-teal-50;
+        color: v.$color-teal-dark;
+        font-weight: 700;
+    }
+
+    th,
+    td {
+        padding: 16px 24px;
+    }
+
+    td {
+        color: $color-black;
+        font-weight: 400;
+    }
+
+    tbody tr {
+        border-top: 1px solid $color-border;
+    }
+}
+
+.order-result-status-table--mobile {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+    @include pad {
+        display: none;
+    }
+
+    @include desktop {
+        display: none;
+    }
+}
+
+.order-result-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+
+    &:not(:first-child) {
+        border-top: 1px solid $color-border;
+    }
+
+    dt {
+        font-size: 14px;
+        font-weight: 400;
+        color: $color-muted;
+        letter-spacing: 0.7px;
+    }
+
+    dd {
+        font-size: 16px;
+        font-weight: 400;
+        color: $color-black;
+        letter-spacing: 0.8px;
+        margin: 0;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Order Detail
+// ---------------------------------------------------------------------------
+
+.order-result-detail-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-inline: 24px;
+    padding-bottom: 32px;
+
+    @include pad {
+        gap: 24px;
+        padding-inline: 120px;
+        padding-bottom: 48px;
+    }
+
+    @include desktop {
+        gap: 24px;
+        padding-inline: 120px;
+        padding-bottom: 48px;
+    }
+}
+
+.order-result-detail-head {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+
+    @include pad {
+        gap: 8px;
+    }
+
+    @include desktop {
+        gap: 8px;
+    }
+}
+
+.order-result-detail-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: v.$color-teal-dark;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    margin: 0;
+
+    @include pad {
+        font-size: 24px;
+        letter-spacing: 1.2px;
+    }
+
+    @include desktop {
+        font-size: 24px;
+        letter-spacing: 1.2px;
+    }
+}
+
+.order-result-detail-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    @include pad {
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    @include desktop {
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 14px;
+        color: $color-muted;
+        letter-spacing: 0.7px;
+
+        @include pad {
+            font-size: 16px;
+            letter-spacing: 0.8px;
+        }
+
+        @include desktop {
+            font-size: 16px;
+            letter-spacing: 0.8px;
+        }
+    }
+}
+
+.order-result-product-table {
+    width: 100%;
+    background: v.$color-white;
+    border: 1px solid $color-border;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.order-result-product-table--desktop {
+    display: none;
+    border-collapse: collapse;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+
+    @include pad {
+        display: table;
+    }
+
+    @include desktop {
+        display: table;
+    }
+
+    thead {
+        background: $color-teal-50;
+        color: v.$color-teal-dark;
+        font-weight: 700;
+    }
+
+    th,
+    td {
+        padding: 16px 24px;
+    }
+
+    th:first-child,
+    td:first-child {
+        text-align: left;
+    }
+
+    th:not(:first-child),
+    td:not(:first-child) {
+        text-align: right;
+        width: 160px;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+        text-align: center;
+        width: 100px;
+    }
+
+    td {
+        color: $color-black;
+        font-weight: 400;
+    }
+
+    tbody tr {
+        border-top: 1px solid $color-border;
+    }
+}
+
+.order-result-product-table--mobile {
+    display: flex;
+    flex-direction: column;
+
+    @include pad {
+        display: none;
+    }
+
+    @include desktop {
+        display: none;
+    }
+}
+
+.order-result-product-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $color-teal-50;
+    color: v.$color-teal-dark;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    padding: 12px 16px;
+}
+
+.order-result-product-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    border-top: 1px solid $color-border;
+}
+
+.order-result-product-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.order-result-product-name {
+    margin: 0;
+    font-size: 16px;
+    color: $color-black;
+    letter-spacing: 0.8px;
+}
+
+.order-result-product-unit {
+    margin: 0;
+    font-size: 14px;
+    color: $color-muted;
+    letter-spacing: 0.7px;
+}
+
+.order-result-product-total {
+    margin: 0;
+    flex-shrink: 0;
+    font-size: 16px;
+    color: $color-black;
+    letter-spacing: 0.8px;
+}
+
+.order-result-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+
+    span:first-child {
+        font-size: 16px;
+        font-weight: 700;
+        color: v.$color-teal-dark;
+        letter-spacing: 0.8px;
+    }
+
+    span:last-child {
+        font-size: 20px;
+        font-weight: 700;
+        color: v.$color-teal;
+        letter-spacing: 1px;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Back button
+// ---------------------------------------------------------------------------
+
+.order-result-back-section {
+    display: flex;
+    justify-content: stretch;
+    padding-inline: 24px;
+    padding-bottom: 48px;
+
+    @include pad {
+        justify-content: center;
+        padding-inline: 120px;
+        padding-top: 8px;
+        padding-bottom: 80px;
+    }
+
+    @include desktop {
+        justify-content: center;
+        padding-inline: 120px;
+        padding-top: 8px;
+        padding-bottom: 80px;
+    }
+}
+
+a.order-result-back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: v.$color-white;
+    border: 1px solid v.$color-teal;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    color: v.$color-teal;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+        opacity: 0.85;
+    }
+
+    @include pad {
+        width: auto;
+        padding: 14px 48px;
+    }
+
+    @include desktop {
+        width: auto;
+        padding: 14px 48px;
+    }
+}

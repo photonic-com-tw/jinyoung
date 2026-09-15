@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>訂單搜尋｜金永國際租賃有限公司</title>
+        {{> head-fonts }}
+    </head>
+    <body>
+        {{> header }}
+
+        <main class="order-search">
+            <section class="order-search-hero">
+                <div class="order-search-hero-inner">
+                    <h1 class="order-search-hero-title">訂單搜尋</h1>
+                    <p class="order-search-hero-subtitle">
+                        輸入您的預約資訊，即時查詢訂單狀態
+                    </p>
+                </div>
+            </section>
+
+            <section class="order-search-breadcrumb">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <ol class="breadcrumb-list">
+                        <li><a href="/pages/index.html">首頁</a></li>
+                        <li aria-current="page">訂單搜尋</li>
+                    </ol>
+                </nav>
+            </section>
+
+            <section class="order-search-form-section">
+                <h2 class="order-search-form-title">請輸入訂單編號</h2>
+
+                <form
+                    id="order-search-form"
+                    class="order-search-form"
+                    action="/pages/order-result.html"
+                    method="get"
+                >
+                    <div class="order-search-form-row">
+                        <label for="order-number" class="sr-only"
+                            >訂單編號</label
+                        >
+                        <input
+                            type="text"
+                            id="order-number"
+                            name="order-number"
+                            class="order-search-input"
+                            placeholder="例如 NF20260827001"
+                            autocomplete="off"
+                            required
+                        />
+                        <button type="submit" class="order-search-submit">
+                            送出
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="order-search-help-section">
+                <h2 class="order-search-help-title">
+                    找不到您的訂單？聯繫客服
+                </h2>
+
+                <div class="order-search-help-card">
+                    <p class="order-search-help-card-title">聯繫客服</p>
+                    <p class="order-search-help-card-text">
+                        市話專線：886-2-29749738#2
+                    </p>
+                    <p class="order-search-help-card-text">
+                        行動專線：0915-350-565
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        {{> footer }}
+
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>

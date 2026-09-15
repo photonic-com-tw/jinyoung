@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>訂單查詢結果｜金永國際租賃有限公司</title>
+        {{> head-fonts }}
+    </head>
+    <body>
+        {{> header }}
+
+        <main class="order-result">
+            <section class="order-result-hero">
+                <div class="order-result-hero-inner">
+                    <h1 class="order-result-hero-title">訂單搜尋</h1>
+                    <p class="order-result-hero-subtitle">
+                        輸入您的預約資訊，即時查詢訂單狀態
+                    </p>
+                </div>
+            </section>
+
+            <section class="order-result-breadcrumb">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <ol class="breadcrumb-list">
+                        <li><a href="/pages/index.html">首頁</a></li>
+                        <li class="order-result-breadcrumb-mid">
+                            <a href="/pages/order-search.html">訂單搜尋</a>
+                        </li>
+                        <li aria-current="page">訂單結果</li>
+                    </ol>
+                </nav>
+            </section>
+
+            <section class="order-result-form-section">
+                <h2 class="order-result-form-title">請輸入訂單編號</h2>
+
+                <form class="order-result-form" data-order-result-form>
+                    <div class="order-result-form-row">
+                        <label for="order-number" class="sr-only"
+                            >訂單編號</label
+                        >
+                        <input
+                            type="text"
+                            id="order-number"
+                            name="order-number"
+                            class="order-result-input"
+                            placeholder="例如 NF20260827001"
+                            autocomplete="off"
+                            data-order-result-input
+                        />
+                        <button
+                            type="button"
+                            class="order-result-submit"
+                            data-order-result-submit
+                        >
+                            送出
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section
+                class="order-result-status-section"
+                data-order-result-results
+            >
+                <h2 class="order-result-section-title">訂單狀態</h2>
+
+                <table
+                    class="order-result-status-table order-result-status-table--desktop"
+                >
+                    <thead>
+                        <tr>
+                            <th scope="col">購買日期</th>
+                            <th scope="col">訂單編號</th>
+                            <th scope="col">總價</th>
+                            <th scope="col">付款方式</th>
+                            <th scope="col">收款狀態</th>
+                            <th scope="col">派車狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026/08/27 14:32</td>
+                            <td>NF20260827001</td>
+                            <td>NT$ 5,700</td>
+                            <td>ATM轉帳/匯款</td>
+                            <td class="is-pending">待確認</td>
+                            <td class="is-muted">未派車</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <dl
+                    class="order-result-status-table order-result-status-table--mobile"
+                >
+                    <div class="order-result-status-row">
+                        <dt>購買日期</dt>
+                        <dd>2026/08/27 14:32</dd>
+                    </div>
+                    <div class="order-result-status-row">
+                        <dt>訂單編號</dt>
+                        <dd>NF20260827001</dd>
+                    </div>
+                    <div class="order-result-status-row">
+                        <dt>總價</dt>
+                        <dd>NT$ 5,700</dd>
+                    </div>
+                    <div class="order-result-status-row">
+                        <dt>付款方式</dt>
+                        <dd>ATM轉帳/匯款</dd>
+                    </div>
+                    <div class="order-result-status-row">
+                        <dt>收款狀態</dt>
+                        <dd class="is-pending">待確認</dd>
+                    </div>
+                    <div class="order-result-status-row">
+                        <dt>派車狀態</dt>
+                        <dd class="is-muted">未派車</dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section class="order-result-detail-section">
+                <div class="order-result-detail-head">
+                    <h2 class="order-result-detail-title">
+                        訂單編號 NF20260827001
+                    </h2>
+                    <div class="order-result-detail-meta">
+                        <p>訂購時間：2026/08/27 14:32</p>
+                        <p>訂單信箱：exa***@gmail.com</p>
+                    </div>
+                </div>
+
+                <table
+                    class="order-result-product-table order-result-product-table--desktop"
+                >
+                    <thead>
+                        <tr>
+                            <th scope="col">品項</th>
+                            <th scope="col">單價</th>
+                            <th scope="col">數量</th>
+                            <th scope="col">總價</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>推薦行程｜日月潭旅遊</td>
+                            <td>NT$ 4,700</td>
+                            <td>1</td>
+                            <td>NT$ 4,700</td>
+                        </tr>
+                        <tr>
+                            <td>服務費</td>
+                            <td>NT$ 1,000</td>
+                            <td>1</td>
+                            <td>NT$ 1,000</td>
+                        </tr>
+                        <tr>
+                            <td>折扣</td>
+                            <td>-NT$ 0</td>
+                            <td>1</td>
+                            <td>-NT$ 0</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div
+                    class="order-result-product-table order-result-product-table--mobile"
+                >
+                    <div class="order-result-product-head">
+                        <span>品項</span>
+                        <span>總價</span>
+                    </div>
+                    <div class="order-result-product-row">
+                        <div class="order-result-product-item">
+                            <p class="order-result-product-name">
+                                推薦行程｜日月潭旅遊
+                            </p>
+                            <p class="order-result-product-unit">
+                                NT$ 4,700 × 1
+                            </p>
+                        </div>
+                        <p class="order-result-product-total">NT$ 4,700</p>
+                    </div>
+                    <div class="order-result-product-row">
+                        <div class="order-result-product-item">
+                            <p class="order-result-product-name">服務費</p>
+                            <p class="order-result-product-unit">
+                                NT$ 1,000 × 1
+                            </p>
+                        </div>
+                        <p class="order-result-product-total">NT$ 1,000</p>
+                    </div>
+                    <div class="order-result-product-row">
+                        <div class="order-result-product-item">
+                            <p class="order-result-product-name">折扣</p>
+                            <p class="order-result-product-unit">-NT$ 0 × 1</p>
+                        </div>
+                        <p class="order-result-product-total">-NT$ 0</p>
+                    </div>
+                </div>
+
+                <div class="order-result-total-row">
+                    <span>總金額：</span>
+                    <span class="order-result-total-amount">NT$ 5,700</span>
+                </div>
+            </section>
+
+            <section class="order-result-back-section">
+                <a href="/pages/order-search.html" class="order-result-back-btn"
+                    >返回</a
+                >
+            </section>
+        </main>
+
+        {{> footer }}
+
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>

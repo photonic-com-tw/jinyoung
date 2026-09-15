@@ -675,3 +675,20 @@ if (bookingConfirmationForm) {
     window.location.href = '/pages/booking-success.html';
   });
 }
+
+// Order Search: required order number; on valid submit go to static result page.
+// No API / order lookup — any non-empty value is enough to continue.
+const orderSearchForm = document.getElementById('order-search-form');
+
+if (orderSearchForm) {
+  orderSearchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!orderSearchForm.checkValidity()) {
+      orderSearchForm.reportValidity();
+      return;
+    }
+
+    window.location.href = '/pages/order-result.html';
+  });
+}

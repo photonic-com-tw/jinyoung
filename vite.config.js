@@ -40,6 +40,8 @@ export default defineConfig({
         bookingDetails: resolve(__dirname, 'src/pages/booking-details.html'),
         bookingConfirmation: resolve(__dirname, 'src/pages/booking-confirmation.html'),
         bookingSuccess: resolve(__dirname, 'src/pages/booking-success.html'),
+        orderSearch: resolve(__dirname, 'src/pages/order-search.html'),
+        orderResult: resolve(__dirname, 'src/pages/order-result.html'),
         error: resolve(__dirname, 'src/pages/error.html'),
       },
     },
