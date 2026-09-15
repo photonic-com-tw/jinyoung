@@ -1,0 +1,160 @@
+@use "../base/variables" as v;
+@use "../base/mixin" as *;
+
+$color-muted: #6a7282;
+
+.booking-success-section {
+    background: v.$color-white;
+    padding-block: 48px;
+
+    @include pad {
+        padding-top: 96px;
+        padding-bottom: 120px;
+    }
+
+    @include desktop {
+        padding-top: 96px;
+        padding-bottom: 120px;
+    }
+}
+
+.booking-success-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+
+    @include pad {
+        gap: 40px;
+    }
+
+    @include desktop {
+        gap: 40px;
+    }
+}
+
+.booking-success-icon {
+    width: 72px;
+    height: 72px;
+
+    @include pad {
+        width: 96px;
+        height: 96px;
+    }
+
+    @include desktop {
+        width: 96px;
+        height: 96px;
+    }
+}
+
+.booking-success-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    @include pad {
+        gap: 16px;
+    }
+
+    @include desktop {
+        gap: 16px;
+    }
+}
+
+.booking-success-title {
+    font-size: 30px;
+    font-weight: 700;
+    color: v.$color-teal;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+    margin: 0;
+
+    @include pad {
+        font-size: 36px;
+        letter-spacing: 1.8px;
+    }
+
+    @include desktop {
+        font-size: 36px;
+        letter-spacing: 1.8px;
+    }
+}
+
+.booking-success-description {
+    font-size: 16px;
+    color: $color-muted;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    margin: 0;
+
+    @include pad {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    @include desktop {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+}
+
+.booking-success-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+
+    @include pad {
+        width: auto;
+        gap: 24px;
+    }
+
+    @include desktop {
+        width: auto;
+        gap: 24px;
+    }
+}
+
+.booking-success-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+        opacity: 0.85;
+    }
+
+    @include pad {
+        flex: none;
+        padding: 14px 40px;
+    }
+
+    @include desktop {
+        flex: none;
+        padding: 14px 40px;
+    }
+}
+
+a.booking-success-btn-primary {
+    background: v.$color-teal;
+    color: v.$color-white;
+    border: 1px solid v.$color-teal;
+}
+
+a.booking-success-btn-secondary {
+    background: v.$color-white;
+    color: v.$color-teal;
+    border: 1px solid v.$color-teal;
+}

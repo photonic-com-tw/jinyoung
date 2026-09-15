@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>預約成功｜金永國際租賃有限公司</title>
+        {{> head-fonts }}
+    </head>
+    <body>
+        {{> header }}
+
+        <main class="booking-success">
+            <section class="booking-hero">
+                <div class="container booking-hero-inner">
+                    <h1 class="booking-hero-title">我要預約</h1>
+                    <p class="booking-hero-subtitle">
+                        免去排行程的燒腦，定版行程一鍵預約。
+                    </p>
+                </div>
+            </section>
+
+            <section class="rental-breadcrumb">
+                <div class="container">
+                    <nav class="breadcrumb" aria-label="Breadcrumb">
+                        <ol class="breadcrumb-list">
+                            <li><a href="/pages/index.html">首頁</a></li>
+                            <li aria-current="page">我要預約</li>
+                        </ol>
+                    </nav>
+                </div>
+            </section>
+
+            <section class="booking-success-section">
+                <div class="container booking-success-inner">
+                    <img
+                        class="booking-success-icon"
+                        src="../assets/images/icon-success.svg"
+                        alt=""
+                        width="96"
+                        height="96"
+                    />
+
+                    <div class="booking-success-text">
+                        <h2 class="booking-success-title">預約成功！</h2>
+                        <p class="booking-success-description">
+                            感謝您的預約，我們已收到您的訂單。<br />
+                            訂單確認信已寄至您的 Email，請留意信箱通知。
+                        </p>
+                    </div>
+
+                    <div class="booking-success-actions">
+                        <a
+                            href="#"
+                            class="booking-success-btn booking-success-btn-primary"
+                        >
+                            查詢訂單
+                        </a>
+                        <a
+                            href="/pages/index.html"
+                            class="booking-success-btn booking-success-btn-secondary"
+                        >
+                            回到首頁
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        {{> footer }}
+
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>

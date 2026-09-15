@@ -660,7 +660,7 @@ if (bookingDetailsForm) {
 }
 
 // Booking Confirmation: native required validation for payment, invoice, and
-// agreement. Payment destination is not implemented yet — stay on this page.
+// agreement. On valid submit, continue to booking-success (no payment gateway).
 const bookingConfirmationForm = document.getElementById('booking-confirmation-form');
 
 if (bookingConfirmationForm) {
@@ -671,5 +671,7 @@ if (bookingConfirmationForm) {
       bookingConfirmationForm.reportValidity();
       return;
     }
+
+    window.location.href = '/pages/booking-success.html';
   });
 }
